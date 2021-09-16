@@ -1,0 +1,56 @@
+.bg-image{
+    background-image:  url(../images/landing-page-01.png);
+    width: 100%;
+    height: 800px;
+    background-size: cover;
+}
+
+.bg-white{
+    background: transparent;
+}
+
+/*.mask{*/
+/*    background-color: rgba(0, 0, 0, 0.4);*/
+/*    height: 800px;*/
+/*}*/
+
+.dropdown-menu a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-menu {display: block;}
+
+.dropdown:hover .dropdown-toggle {background-color: transparent;}
+
+.bg{
+    background-color: #26A9E0;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.bg-1{
+    background-color: transparent;
+}
+
+#btn1{
+    border-radius: 27px;
+}
+
+
+
+.bg-image-1{
+    background-image:  url(../images/landing-page-02.png);
+    width: 100%;
+    height: 1000px;
+    background-size: cover;
+}
+
+#btn2{
+    border-radius: 27px;
+}
+
+.carousel-item{
+    height: 300px;
+}
