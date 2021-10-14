@@ -41,7 +41,7 @@
                                 <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="tailieu.html">Tài liệu</a></li>
                                     <li><a class="dropdown-item" href="tracnghiem.html">Trắc nghiệm</a></li>
-                                    <li><a class="dropdown-item" href="#">Đóng góp tài liệu</a></li>
+                                    <li><a class="dropdown-item" href="donggop.html">Đóng góp tài liệu</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -66,15 +66,44 @@
                         <li><a class="dropdown-item" href="#" onclick="firebase.auth().signOut();">Sign out</a></li>
                     </ul>
                 </div>
-                <div class="modal d-block1" id="modal-login" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal fade d-block1" id="modal-login" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content shadow">
                             <div class="modal-header">
-                                <h5 class="modal-title">Login</h5>
+                                <h3 class="modal-title">Login</h3>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div id="firebaseui-auth-container" class="guest"></div>
+                                <div id="" class="guest">
+                                    <div class="container-1">
+                                        <form action="/">
+                                            <div class="row">
+                                                <div>
+                                                    <a href="#" class="fb btn4">
+                                                        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                                                    </a>
+                                                    <a href="#" class="twitter btn4">
+                                                        <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+                                                    </a>
+                                                    <a href="#" class="google btn4"><i class="fa fa-google fa-fw">
+                                                    </i> Login with Google+
+                                                    </a>
+                                                </div>
+
+                                                <div class="d-flex justify-content-center pt-3" style="font-size: 30px; color: gray">
+                                                    OR
+                                                </div>
+
+                                                <div class="pt-3">
+                                                    <input class="input" type="text" name="username" placeholder="Username" required>
+                                                    <input class="input" type="password" name="password" placeholder="Password" required>
+                                                    <input class="input" type="submit" value="Login">
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                                 <div id="user-signed-in" class="d-none d-flex user">
                                     <div class="flex-grow-1 d-flex justify-content-center">
                                         <img  src="../images/user.svg" width="110px" height="110px" class="avatar rounded-circle">
@@ -97,7 +126,7 @@
     </nav>
 
     <nav id="myHeader" class="navbar navbar-expand-md navbar-dark bg">
-        <div class="container-fluid">
+        <div class="container container-fluid">
             <button
                     class="navbar-toggler"
                     type="button"
@@ -112,13 +141,13 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-4 mb-lg-0">
                     <li id="a1" class="nav-item active">
-                        <a class="nav-link" aria-current="page" href="#">Tài liệu</a>
+                        <a class="nav-link" aria-current="page" href="tailieu.html">Tài liệu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="tracnghiem.html">Trắc nghiệm</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Đóng góp tài liệu</a>
+                        <a class="nav-link" href="donggop.html">Đóng góp tài liệu</a>
                     </li>
                 </ul>
             </div>
@@ -129,9 +158,100 @@
 </header>
 
 <main>
+    <div class="container" style="padding: 15px">
+        <img src="../images/Slide1.PNG" style="background-size: cover; height: 300px; width: 100%; object-fit: cover">
+    </div>
+    <div class="container pt-5 text-left">
+        <h1 class="mb-3" style="font-size: 40px; color: #233C58;">Môn đại cương</h1>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px">
+            <div class="col">
+                <a href="document.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
+                <div class="card-dc card-body">
+                    <h5 class="card-title text-center">Card title</h5>
+                </div>
+            </div>
+            <div class="col">
+                <a href="document.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
+                <div class="card-dc card-body">
+                    <h5 class="card-title text-center">Card title</h5>
+                </div>
+            </div>
+            <div class="col">
+                <a href="document.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
+                <div class="card-dc card-body">
+                    <h5 class="card-title text-center">Card title</h5>
+                </div>
+            </div>
+            <div class="col">
+                <a href="document.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
+                <div class="card-dc card-body">
+                    <h5 class="card-title text-center">Card title</h5>
+                </div>
+            </div>
+            <span id="more">
+                <div class="col">
+                    <a href="document.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
+                    <div class="card-dc card-body">
+                        <h5 class="card-title text-center">Card title</h5>
+                    </div>
+                </div>
+            </span>
+        </div>
+        <div class="d-flex justify-content-center align-items-center pt-3">
+            <button id="btn3" onclick="seeMore()" type="button" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
+        </div>
+    </div>
 
+    <div class="container pt-5 text-left">
+        <h1 class="mb-3" style="font-size: 40px; color: #233C58;">Môn chuyên ngành</h1>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px">
+            <div class="col">
+                <a href="document.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Card title</h5>
+                </div>
+            </div>
+            <div class="col">
+                <a href="document.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Card title</h5>
+                </div>
+            </div>
+            <div class="col">
+                <a href="document.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Card title</h5>
+                </div>
+            </div>
+            <div class="col">
+                <a href="document.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Card title</h5>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center pt-3">
+            <button  type="button" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
+        </div>
+    </div>
+
+    <div class="foot-img"></div>
 
     <script>
+        function seeMore(){
+            var i, m = 0;
+            var moreSubject = document.getElementById("more");
+            var btnText = document.getElementById("btn3");
+
+            if(moreSubject.style.display === "none"){
+                btnText.innerHTML = "See less";
+                moreSubject.style.display = "block";
+            }else{
+                btnText.innerHTML = "See more";
+                moreSubject.style.display = "none";
+            }
+        }
+
         window.onscroll = function() {myFunction()};
 
         var header = document.getElementById("myHeader");
@@ -232,7 +352,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+
     <script src="../../js/main.js"></script>
+
 </footer>
 </body>
 </html>

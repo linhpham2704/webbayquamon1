@@ -127,116 +127,81 @@
 
     <nav id="myHeader" class="navbar navbar-expand-md navbar-dark bg">
         <div class="container container-fluid">
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarExample01"
-                    aria-controls="navbarExample01"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto mb-4 mb-lg-0">
-                    <li id="a1" class="nav-item active">
-                        <a class="nav-link" aria-current="page" href="tailieu.html">Tài liệu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tracnghiem.html">Trắc nghiệm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="donggop.html">Đóng góp tài liệu</a>
-                    </li>
-                </ul>
-            </div>
+            <div style="font-size: 30px; color: white;">Tên môn học</div>
+            <div class="d-flex justify-content-end" style="font-size: 20px; color: white;">00:00</div>
+        </div>
+    </nav>
+    <nav>
+        <div class="tab-tn">
+            <button class="tablinks" onclick="openTitle(event, 'Title1')" id="defaultOpen">Title 1</button>
+            <button class="tablinks" onclick="openTitle(event, 'Title2')">Title 2</button>
+            <button class="tablinks" onclick="openTitle(event, 'Title3')">Title 3</button>
+            <button class="tablinks" onclick="openTitle(event, 'Title4')">Title 4</button>
+            <button class="tablinks" onclick="openTitle(event, 'Title5')">Title 5</button>
         </div>
     </nav>
     <!-- Navbar -->
 </header>
-
 <main>
-    <div class="container" style="padding: 15px">
-        <img src="../images/Slide2.PNG" style="background-size: cover; height: 300px; width: 100%; object-fit: cover">
-    </div>
-    <div class="container pt-5 text-left">
-        <h1 class="mb-3" style="font-size: 40px; color: #233C58;">Môn đại cương</h1>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px">
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
+    <div class="main">
+        <form name="myform">
+        <div id="Title1" class="content-tn">
+            <div>
+                1. What is the capital of Vietnam ?<br>
+                <input class="form-check-input" type="radio" name="question_01" value="a" aria-label="">  Da Nang<br>
+                <input class="form-check-input" type="radio" name="question_01" value="b" aria-label="">  Ho Chi Minh<br>
+                <input class="form-check-input" type="radio" name="question_01" value="c" aria-label="">  Ha Noi<br>
+                <input class="form-check-input" type="radio" name="question_01" value="d" aria-label="">  Hai Phong<br><br>
+            </div>
 
+            <div>
+                2. HTML stands for...?<br>
+                <input class="form-check-input" type="radio" name="question_02" value="a" aria-label="">  hypertext markup language<br>
+                <input class="form-check-input" type="radio" name="question_02" value="b" aria-label="">  hypertension markup language<br><br>
             </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
 
+            <div>
+                3. Which country is the largest in the world?<br>
+                <input class="form-check-input" type="radio" name="question_03" value="a" aria-label="">  Russia<br>
+                <input class="form-check-input" type="radio" name="question_03" value="b" aria-label="">  China<br>
+                <input class="form-check-input" type="radio" name="question_03" value="c" aria-label="">  America<br>
+                <input class="form-check-input" type="radio" name="question_03" value="d" aria-label="">  India<br><br>
             </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
-            </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center align-items-center pt-3">
-            <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
-        </div>
-        <div class="d-none d-flex justify-content-center align-items-center pt-3">
-            <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See less</button>
-        </div>
-    </div>
 
-    <div class="container pt-5 text-left">
-        <h1 class="mb-3" style="font-size: 40px; color: #233C58;">Môn chuyên ngành</h1>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px">
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
+            <div>
+                3. Which country is the largest in the world?<br>
+                <input class="form-check-input" type="radio" name="question_03" value="a" aria-label="">  Russia<br>
+                <input class="form-check-input" type="radio" name="question_03" value="b" aria-label="">  China<br>
+                <input class="form-check-input" type="radio" name="question_03" value="c" aria-label="">  America<br>
+                <input class="form-check-input" type="radio" name="question_03" value="d" aria-label="">  India<br><br>
             </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
+            <div>
+                3. Which country is the largest in the world?<br>
+                <input class="form-check-input" type="radio" name="question_03" value="a" aria-label="">  Russia<br>
+                <input class="form-check-input" type="radio" name="question_03" value="b" aria-label="">  China<br>
+                <input class="form-check-input" type="radio" name="question_03" value="c" aria-label="">  America<br>
+                <input class="form-check-input" type="radio" name="question_03" value="d" aria-label="">  India<br><br>
             </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
+            <div>
+                3. Which country is the largest in the world?<br>
+                <input class="form-check-input" type="radio" name="question_03" value="a" aria-label="">  Russia<br>
+                <input class="form-check-input" type="radio" name="question_03" value="b" aria-label="">  China<br>
+                <input class="form-check-input" type="radio" name="question_03" value="c" aria-label="">  America<br>
+                <input class="form-check-input" type="radio" name="question_03" value="d" aria-label="">  India<br><br>
             </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
+
+            <div class="d-flex justify-content-center align-items-center pt-2">
+                <button type="button" class="btn btn-outline-primary" onclick="check()" style="border-radius: 27px;">Nộp bài</button>
             </div>
         </div>
-        <div class="d-flex justify-content-center align-items-center pt-3">
-            <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
-        </div>
-        <div class="d-none d-flex justify-content-center align-items-center pt-3">
-            <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See less</button>
+        </form>
+
+        <div id="Title2" class="content-tn">
+            <h1>Title</h1>
         </div>
     </div>
 
-    <div class="foot-img"></div>
-
-    <script>
+    <script >
         window.onscroll = function() {myFunction()};
 
         var header = document.getElementById("myHeader");
@@ -249,88 +214,48 @@
                 header.classList.remove("sticky");
             }
         }
+
+        function openTitle(evt, til) {
+            var i, contenttn, tablinks;
+            contenttn = document.getElementsByClassName("content-tn");
+            for (i = 0; i < contenttn.length; i++) {
+                contenttn[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(til).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+
+        function check()
+        {
+            var question_01 = document.myform.question_01.value;
+            var question_02 = document.myform.question_02.value;
+            var question_03 = document.myform.question_03.value;
+            var count = 0;
+            if(question_01 == "c")
+            {
+                count++;
+            }
+            if(question_02 == "a")
+            {
+                count++;
+            }
+            if(question_03 == "a")
+            {
+                count++;
+            }
+            alert("you got " + count + " marks");
+        }
     </script>
 </main>
 
-<footer class="text-center text-lg-start text-muted" style="background-color: #233C58">
-    <!-- Section: Social media -->
-    <section
-            class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
-    >
-        <!-- Left -->
-        <div class="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
-        </div>
-        <!-- Left -->
-
-        <!-- Right -->
-        <div>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-google"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-github"></i>
-            </a>
-        </div>
-        <!-- Right -->
-    </section>
-    <!-- Section: Social media -->
-
-    <!-- Section: Links  -->
-    <section class="">
-        <div class="container text-center text-md-start mt-5">
-            <!-- Grid row -->
-            <div class="row mt-3">
-                <!-- Grid column -->
-                <div class="col-md-1 col-lg-1 col-xl-3 mx-auto mb-4">
-                    <!-- Content -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        <i class="fas fa-gem me-3"></i>Bayquamon
-                    </h6>
-                    <p>
-                        Contact the Bayquamon team: our customer service is here for you from Monday to Friday from 9am to 5pm, Saturday from 10am to 2pm.
-                    </p>
-                </div>
-
-                <!-- Grid column -->
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        Contact
-                    </h6>
-                    <p><i class="fas fa-home me-3"></i> Ha Noi, VN</p>
-                    <p>
-                        <i class="fas fa-envelope me-3"></i>
-                        linhpham@gmail.com
-                    </p>
-                    <p><i class="fas fa-phone me-3"></i> + 84 328 468 760</p>
-
-                </div>
-                <!-- Grid column -->
-            </div>
-            <!-- Grid row -->
-        </div>
-    </section>
-    <!-- Section: Links  -->
-
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href="#">Bayquamon</a>
-    </div>
-    <!-- Copyright -->
+<footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

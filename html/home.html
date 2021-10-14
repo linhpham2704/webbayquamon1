@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../css/main.css" rel="stylesheet">
     <title>Bayquamon</title>
 </head>
@@ -45,7 +46,7 @@
                                 <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="tailieu.html">Tài liệu</a></li>
                                     <li><a class="dropdown-item" href="tracnghiem.html">Trắc nghiệm</a></li>
-                                    <li><a class="dropdown-item" href="#">Đóng góp tài liệu</a></li>
+                                    <li><a class="dropdown-item" href="donggop.html">Đóng góp tài liệu</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -70,16 +71,43 @@
                         <li><a class="dropdown-item" href="#" onclick="firebase.auth().signOut();">Sign out</a></li>
                     </ul>
                 </div>
-                <div class="modal d-block1" id="modal-login" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal fade d-block1" id="modal-login" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" >
                         <div class="modal-content shadow">
                             <div class="modal-header">
-                                <h5 class="modal-title">Login</h5>
+                                <h3 class="modal-title">Login</h3>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div id="firebaseui-auth-container" class="guest">
+                                <div id="" class="guest">
+                                    <div class="container-1">
+                                        <form action="/">
+                                            <div class="row">
+                                                <div>
+                                                    <a href="#" class="fb btn4">
+                                                        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                                                    </a>
+                                                    <a href="#" class="twitter btn4">
+                                                        <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+                                                    </a>
+                                                    <a href="#" class="google btn4"><i class="fa fa-google fa-fw">
+                                                    </i> Login with Google+
+                                                    </a>
+                                                </div>
 
+                                                <div class="d-flex justify-content-center pt-3" style="font-size: 30px; color: gray">
+                                                    OR
+                                                </div>
+
+                                                <div class="pt-3">
+                                                    <input class="input" type="text" name="username" placeholder="Username" required>
+                                                    <input class="input" type="password" name="password" placeholder="Password" required>
+                                                    <input class="input" type="submit" value="Login">
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                                 <div id="user-signed-in" class="d-none d-flex user">
                                     <div class="flex-grow-1 d-flex justify-content-center">
@@ -106,8 +134,8 @@
     <!-- Background image -->
         <div class="d-flex justify-content-left align-items-center h-100">
             <div class="text-white">
-                <h1 class="mb-2 ms-5" style="font-size: 51px; color: #233C58;">Welcome to Bayquamon!</h1>
-                <h4 class="mb-5 ms-5" style="font-size: 35px; color: #233C58">Qua môn thật dễ dàng</h4>
+                <h1 class="mb-2 ms-5" style="font-size: 46px; color: #233C58;">Welcome to Bayquamon!</h1>
+                <h5 class="mb-5 ms-5" style="font-size: 37px; color: #233C58">Fly with us!!!</h5>
                 <a id="btn1" class="btn btn-outline-dark btn-lg mb-3 ms-5" href="#t1" role="button">Read more</a>
             </div>
         </div>
@@ -117,7 +145,7 @@
 </header>
 
 <main style="background-color: #F6FBFF">
-    <div class="container pt-5 text-center" >
+    <div class="container pt-5 text-center">
         <h1 id="t1" class="mb-3" style="font-size: 60px; color: #233C58;">Ôn tập bằng cách nào?</h1>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 pt-5">
             <div class="col">
@@ -154,7 +182,7 @@
     <div class="container pt-5 text-center" >
         <h1 class="mb-3" style="font-size: 60px; color: #233C58;">Feedback</h1>
     </div>
-    <div id="carouselExampleCaptions" class="carousel slide pt-5" data-bs-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel slide pt-2" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -162,21 +190,21 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../images/image2.jpg" class="d-block w-100">
+                <img src="../images/Slide3.PNG" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
-                    <span>A</span>
+                    <span></span>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="../images/image2.jpg" class="d-block w-100">
+                <img src="../images/Slide4.PNG" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
-                    <span>B</span>
+                    <span></span>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="../images/image2.jpg" class="d-block w-100">
+                <img src="../images/Slide5.PNG" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
-                    <span>C</span>
+                    <span></span>
                 </div>
             </div>
         </div>
@@ -200,6 +228,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+    </script>
 </main>
 
 <footer class="text-center text-lg-start text-muted" style="background-color: #233C58">
@@ -243,6 +275,12 @@
         <div class="container text-center text-md-start mt-5">
             <!-- Grid row -->
             <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-md-1 col-lg-1 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <img src="../images/logo-white.png" style="width: 200px; height: 200px; background-size: cover; object-fit: contain">
+                </div>
+
                 <!-- Grid column -->
                 <div class="col-md-1 col-lg-1 col-xl-3 mx-auto mb-4">
                     <!-- Content -->
