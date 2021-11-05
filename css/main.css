@@ -77,7 +77,37 @@
 }
 
 .card-img-top:hover{
-    opacity: 0.6;
+    background-color: white;
+    opacity: 1.6;
+}
+#btn:before{
+    font-family: sans-serif;
+    color: rgb(243, 243, 243);
+    content: 'Hover Me';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 23px;
+    transition: all 0.5s;
+}
+#btn:hover::before{
+    top: -30px;
+}
+#btn::after{
+    font-family: 'airplane-outline';
+    content: '\f141';
+    font-size: 40px;
+    color: #f44336;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    top: 140%;
+    transition: all 0.5s;
+}
+#btn:hover::after{
+    top: 50%;
 }
 
 /*.card-img-top.hover-shadow{

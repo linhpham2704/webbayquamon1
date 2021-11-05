@@ -6,6 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
     <link href="../css/main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Trắc nghiệm</title>
 </head>
 <body>
@@ -133,7 +135,7 @@
     </nav>
     <nav>
         <div class="tab-tn">
-            <button class="tablinks" onclick="openTitle(event, 'Title1')" id="defaultOpen">Title 1</button>
+            <button class="tablinks" onclick="openTitle(event, 'Title1')" id="defaultOpen">Tổng hợp 1</button>
             <button class="tablinks" onclick="openTitle(event, 'Title2')">Title 2</button>
             <button class="tablinks" onclick="openTitle(event, 'Title3')">Title 3</button>
             <button class="tablinks" onclick="openTitle(event, 'Title4')">Title 4</button>
@@ -146,53 +148,7 @@
     <div class="main">
         <form name="myform">
         <div id="Title1" class="content-tn">
-            <div>
-                1. What is the capital of Vietnam ?<br>
-                <input class="form-check-input" type="radio" name="question_01" value="a" aria-label="">  Da Nang<br>
-                <input class="form-check-input" type="radio" name="question_01" value="b" aria-label="">  Ho Chi Minh<br>
-                <input class="form-check-input" type="radio" name="question_01" value="c" aria-label="">  Ha Noi<br>
-                <input class="form-check-input" type="radio" name="question_01" value="d" aria-label="">  Hai Phong<br><br>
-            </div>
 
-            <div>
-                2. HTML stands for...?<br>
-                <input class="form-check-input" type="radio" name="question_02" value="a" aria-label="">  hypertext markup language<br>
-                <input class="form-check-input" type="radio" name="question_02" value="b" aria-label="">  hypertension markup language<br><br>
-            </div>
-
-            <div>
-                3. Which country is the largest in the world?<br>
-                <input class="form-check-input" type="radio" name="question_03" value="a" aria-label="">  Russia<br>
-                <input class="form-check-input" type="radio" name="question_03" value="b" aria-label="">  China<br>
-                <input class="form-check-input" type="radio" name="question_03" value="c" aria-label="">  America<br>
-                <input class="form-check-input" type="radio" name="question_03" value="d" aria-label="">  India<br><br>
-            </div>
-
-            <div>
-                3. Which country is the largest in the world?<br>
-                <input class="form-check-input" type="radio" name="question_03" value="a" aria-label="">  Russia<br>
-                <input class="form-check-input" type="radio" name="question_03" value="b" aria-label="">  China<br>
-                <input class="form-check-input" type="radio" name="question_03" value="c" aria-label="">  America<br>
-                <input class="form-check-input" type="radio" name="question_03" value="d" aria-label="">  India<br><br>
-            </div>
-            <div>
-                3. Which country is the largest in the world?<br>
-                <input class="form-check-input" type="radio" name="question_03" value="a" aria-label="">  Russia<br>
-                <input class="form-check-input" type="radio" name="question_03" value="b" aria-label="">  China<br>
-                <input class="form-check-input" type="radio" name="question_03" value="c" aria-label="">  America<br>
-                <input class="form-check-input" type="radio" name="question_03" value="d" aria-label="">  India<br><br>
-            </div>
-            <div>
-                3. Which country is the largest in the world?<br>
-                <input class="form-check-input" type="radio" name="question_03" value="a" aria-label="">  Russia<br>
-                <input class="form-check-input" type="radio" name="question_03" value="b" aria-label="">  China<br>
-                <input class="form-check-input" type="radio" name="question_03" value="c" aria-label="">  America<br>
-                <input class="form-check-input" type="radio" name="question_03" value="d" aria-label="">  India<br><br>
-            </div>
-
-            <div class="d-flex justify-content-center align-items-center pt-2">
-                <button type="button" class="btn btn-outline-primary" onclick="check()" style="border-radius: 27px;">Nộp bài</button>
-            </div>
         </div>
         </form>
 
@@ -234,9 +190,9 @@
 
         function check()
         {
-            var question_01 = document.myform.question_01.value;
-            var question_02 = document.myform.question_02.value;
-            var question_03 = document.myform.question_03.value;
+            var question_01 = document.getElementsByName("answer_1").values();
+            var question_02 = document.getElementsByName("answer_2").values();
+            var question_03 = document.getElementsByName("answer_3").values();
             var count = 0;
             if(question_01 == "c")
             {
@@ -252,6 +208,35 @@
             }
             alert("you got " + count + " marks");
         }
+        $.ajax({
+            url: "http://localhost:8080/api/objectivetest?id=" + 3,
+            type: "GET"
+        }).done(function (data) {
+            let objecques = data;
+            jQuery.each(objecques.questions, function (i, val) {
+                console.log(i + val)
+                let num = i + 1;
+                let answers = val.answers;
+                let title = val.title;
+                if (/^\d./.test(val.title))
+                    title = val.title.substring(val.title.indexOf(".") + 1).trim();
+                $("#Title1").append("<div id='question_" + num + "'> <form>"
+                    + num + ". " + title)
+                if (val.image != null)
+                    $("#Title1").append("<img src='" + val.image + "'></img> <br>")
+                jQuery.each(answers, function (a_i, a_val) {
+                    $("#Title1").append("<input type='radio' name='" + "answer_" + num + "'>" + a_val.answer + "</input> <br>")
+                })
+
+                $("#Title1").append("</p> <br> </div>")
+
+            })
+            $('#Title1').append("<div class='d-flex justify-content-center align-items-center pt-2'>\n" +
+                "                <button  class='btn btn-outline-primary' onclick='check()' style='border-radius: 27px;'>Nộp bài</button>\n" +
+                "            </div>")
+
+        })
+1
     </script>
 </main>
 
