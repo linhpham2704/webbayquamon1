@@ -135,11 +135,8 @@
     </nav>
     <nav>
         <div class="tab-tn">
-            <button class="tablinks" onclick="openTitle(event, 'Title1')" id="defaultOpen">Tổng hợp 1</button>
-            <button class="tablinks" onclick="openTitle(event, 'Title2')">Title 2</button>
-            <button class="tablinks" onclick="openTitle(event, 'Title3')">Title 3</button>
-            <button class="tablinks" onclick="openTitle(event, 'Title4')">Title 4</button>
-            <button class="tablinks" onclick="openTitle(event, 'Title5')">Title 5</button>
+<!--            <button class="tablinks" onclick="" id="defaultOpen">Tổng hợp 1</button>-->
+<!--            <button class="tablinks" onclick="">Title 2</button>-->
         </div>
     </nav>
     <!-- Navbar -->
@@ -157,11 +154,14 @@
         </div>
     </div>
 
-    <script >
+    <script>
         window.onscroll = function() {myFunction()};
 
         var header = document.getElementById("myHeader");
         var sticky = header.offsetTop;
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        console.log(params)
 
         function myFunction() {
             if (window.pageYOffset > sticky) {
@@ -172,6 +172,7 @@
         }
 
         function openTitle(evt, til) {
+            console.log(evt+til)
             var i, contenttn, tablinks;
             contenttn = document.getElementsByClassName("content-tn");
             for (i = 0; i < contenttn.length; i++) {
@@ -181,12 +182,38 @@
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-            document.getElementById(til).style.display = "block";
+            document.getElementById("Title1").style.display = "block";
+            $.ajax({
+                url: "http://localhost:8080/api/objectivetest?id=" + til,
+                type: "GET"
+            }).done(function (data) {
+                let objecques = data;
+                console.log(objecques)
+                $("#Title1").empty()
+                jQuery.each(objecques.questions, function (i, val) {
+                    let num = i + 1;
+                    let answers = val.answers;
+                    let title = val.title;
+                    if (/^\d./.test(val.title))
+                        title = val.title.substring(val.title.indexOf(".") + 1).trim();
+                    if (/^Câu \d:/.test(val.title))
+                        title = val.title.substring(val.title.indexOf(":") + 1).trim();
+                    $("#Title1").append("<div id='question_" + num + "'> <form>"
+                        + num + ". " + title)
+                    if (val.image != null)
+                        $("#Title1").append("<img src='" + val.image + "'></img> <br>")
+                    jQuery.each(answers, function (a_i, a_val) {
+                        $("#Title1").append("<input type='radio' name='" + "answer_" + num + "'>" + a_val.answer + "</input> <br>")
+                    })
+
+                    $("#Title1").append("</p> <br> </div>")
+                })
+                $('#Title1').append("<div class='d-flex justify-content-center align-items-center pt-2'>\n" +
+                    "                <button  class='btn btn-outline-primary' onclick='check()' style='border-radius: 27px;'>Nộp bài</button>\n" +
+                    "            </div>")
+            })
             evt.currentTarget.className += " active";
         }
-
-        // Get the element with id="defaultOpen" and click on it
-        document.getElementById("defaultOpen").click();
 
         function check()
         {
@@ -209,34 +236,24 @@
             alert("you got " + count + " marks");
         }
         $.ajax({
-            url: "http://localhost:8080/api/objectivetest?id=" + 3,
+            url: "http://localhost:8080/api/subject?id=" + params.sbjid,
             type: "GET"
         }).done(function (data) {
-            let objecques = data;
-            jQuery.each(objecques.questions, function (i, val) {
-                console.log(i + val)
-                let num = i + 1;
-                let answers = val.answers;
-                let title = val.title;
-                if (/^\d./.test(val.title))
-                    title = val.title.substring(val.title.indexOf(".") + 1).trim();
-                $("#Title1").append("<div id='question_" + num + "'> <form>"
-                    + num + ". " + title)
-                if (val.image != null)
-                    $("#Title1").append("<img src='" + val.image + "'></img> <br>")
-                jQuery.each(answers, function (a_i, a_val) {
-                    $("#Title1").append("<input type='radio' name='" + "answer_" + num + "'>" + a_val.answer + "</input> <br>")
-                })
-
-                $("#Title1").append("</p> <br> </div>")
-
+            let subject= data;
+            console.log(subject)
+            first=true
+            jQuery.each(subject.objectiveTest_name_id, function (i,val){
+                if(first){
+                    $(".tab-tn").append("<button class=\"tablinks\" onclick=\"openTitle(event,"+val+")\" id='defaultOpen'>"+i+"</button>")
+                    // Get the element with id="defaultOpen" and click on it
+                    first=false
+                }
+                else{
+                    $(".tab-tn").append("<button class=\"tablinks\" onclick=\"openTitle(event,"+val+")\">"+i+"</button>")
+                }
             })
-            $('#Title1').append("<div class='d-flex justify-content-center align-items-center pt-2'>\n" +
-                "                <button  class='btn btn-outline-primary' onclick='check()' style='border-radius: 27px;'>Nộp bài</button>\n" +
-                "            </div>")
-
+            document.getElementById("defaultOpen").click()
         })
-1
     </script>
 </main>
 
