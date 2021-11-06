@@ -198,8 +198,9 @@
                         title = val.title.substring(val.title.indexOf(".") + 1).trim();
                     if (/^Câu \d:/.test(val.title))
                         title = val.title.substring(val.title.indexOf(":") + 1).trim();
-                    $("#Title1").append("<div id='question_" + num + "'> <form>"
+                    $("#Title1").append("<div id='question_" + num + "'>"
                         + num + ". " + title)
+                    $("#Title1").append("<input type='hidden' name='" + "qid_" + num + "' value='"+val.id+"'></input>")
                     if (val.image != null)
                         $("#Title1").append("<img src='" + val.image + "'></img> <br>")
                     jQuery.each(answers, function (a_i, a_val) {
