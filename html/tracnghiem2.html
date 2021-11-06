@@ -129,7 +129,7 @@
 
     <nav id="myHeader" class="navbar navbar-expand-md navbar-dark bg">
         <div class="container container-fluid">
-            <div style="font-size: 30px; color: white;">Tên môn học</div>
+            <div style="font-size: 30px; color: white;" id="subjectName"></div>
             <div class="d-flex justify-content-end" style="font-size: 20px; color: white;">00:00</div>
         </div>
     </nav>
@@ -241,6 +241,7 @@
         }).done(function (data) {
             let subject= data;
             console.log(subject)
+            $("#subjectName").append(subject.name);
             first=true
             jQuery.each(subject.objectiveTest_name_id, function (i,val){
                 if(first){
