@@ -222,7 +222,17 @@
                     + "<form class=\"d-flex user d-none\" method=\"post\" action='#'>\n" +
                     "                    <div class=\"flex-grow-1\"><input type=\"text\" class=\"form-control\" name=\"comment\" placeholder=\"Comment\"/></div>\n" +
                     "                    </div>\n" +
-                    "                </form>")
+                    "                </form>" +
+                    "           <div class=\"form-outline mb-4\">\n" +
+                    "                <form class=\"d-flex user d-none\" method=\"post\" th:action=\"http://localhost:8080/api/comment/add\">\n" +
+                    "                    <input type=\"hidden\" th:value=\""+params.objectiveTestId+"\" name=\"objectiveTest_id\"/>\n" +
+                    "                    <div class=\"flex-grow-1\"><input type=\"text\" class=\"form-control\" name=\"comment\" placeholder=\"Comment\"/></div>\n" +
+                    "                    <div class=\"ps-2\">\n" +
+                    "                        <button class=\"btn btn-outline-success\" type=\"submit\">Send</button>\n" +
+                    "                    </div>\n" +
+                    "                </form>\n" +
+                    "                <div class=\"text-center guest\">You must be <a href=\"#\" data-bs-toggle=\"modal\" data-bs-target=\"#modal-login\">logged in</a> to post a comment.</div>\n" +
+                    "            </div>")
                 jQuery.each(comments, function (i, val) {
                     $("#comment").append(
                         "            <div class=\"card\">\n" +
