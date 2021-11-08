@@ -244,15 +244,19 @@
             first=true
             jQuery.each(subject.objectiveTest_name_id, function (i,val){
                 if(first){
-                    $(".tab-tn").append("<button class=\"tablinks\" onclick=\"openTitle(event,"+val+")\" id='defaultOpen'>"+i+"</button>")
+                    $(".tab-tn").append("<button class=\"tablinks\" onclick=\"openTitle(event,"+val+")\" id='defaultOpen' value='"+i+"'>"+i+"</button>")
                     // Get the element with id="defaultOpen" and click on it
                     first=false
                 }
                 else{
-                    $(".tab-tn").append("<button class=\"tablinks\" onclick=\"openTitle(event,"+val+")\">"+i+"</button>")
+                    $(".tab-tn").append("<button class=\"tablinks\" onclick=\"openTitle(event,"+val+")\" id='"+i+"' value='"+i+"'>"+i+"</button>")
                 }
             })
-            document.getElementById("defaultOpen").click()
+            defaultTestName=document.getElementById("defaultOpen").getAttribute("value")
+            if(params.testName==defaultTestName | params.testName==null)
+                document.getElementById("defaultOpen").click()
+            else
+                document.getElementById(params.testName).click()
         })
     </script>
 </main>
