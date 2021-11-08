@@ -143,7 +143,7 @@
 </header>
 <main>
     <div class="main">
-        <form name="myform">
+        <form name="myform" id='testform' method="post" action="http://localhost:8080/api/objectivetest/check">
         <div id="Title1" class="content-tn">
 
         </div>
@@ -190,13 +190,14 @@
                 let objecques = data;
                 console.log(objecques)
                 $("#Title1").empty()
+                $("#Title1").append("<input type='hidden' name='testName' value='"+objecques.testName+"'></input>")
                 jQuery.each(objecques.questions, function (i, val) {
                     let num = i + 1;
                     let answers = val.answers;
                     let title = val.title;
-                    if (/^\d./.test(val.title))
+                    if (/^\d*./.test(val.title))
                         title = val.title.substring(val.title.indexOf(".") + 1).trim();
-                    if (/^Câu \d:/.test(val.title))
+                    if (/^Câu \d*:/.test(val.title))
                         title = val.title.substring(val.title.indexOf(":") + 1).trim();
                     $("#Title1").append("<div id='question_" + num + "'>"
                         + num + ". " + title)
@@ -204,7 +205,7 @@
                     if (val.image != null)
                         $("#Title1").append("<img src='" + val.image + "'></img> <br>")
                     jQuery.each(answers, function (a_i, a_val) {
-                        $("#Title1").append("<input type='radio' name='" + "answer_" + num + "'>" + a_val.answer + "</input> <br>")
+                        $("#Title1").append("<input type='radio' name='" + "answer_" + num + "' id='" + "answer_" + num + "_"+a_val.answerHead+"' value='"+a_val.answer+"'>" + a_val.answer + "</input> <br>")
                     })
 
                     $("#Title1").append("</p> <br> </div>")
@@ -218,23 +219,48 @@
 
         function check()
         {
-            var question_01 = document.getElementsByName("answer_1").values();
-            var question_02 = document.getElementsByName("answer_2").values();
-            var question_03 = document.getElementsByName("answer_3").values();
-            var count = 0;
-            if(question_01 == "c")
-            {
-                count++;
-            }
-            if(question_02 == "a")
-            {
-                count++;
-            }
-            if(question_03 == "a")
-            {
-                count++;
-            }
-            alert("you got " + count + " marks");
+            // var question_01 = document.getElementsByName("answer_1").values();
+            // var question_02 = document.getElementsByName("answer_2").values();
+            // var question_03 = document.getElementsByName("answer_3").values();
+            // for (q in question_01){
+            //     console.log(q)
+            // }
+            //
+            //
+            // var count = 0;
+            // if(question_01 == "c")
+            // {
+            //     count++;
+            // }
+            // if(question_02 == "a")
+            // {
+            //     count++;
+            // }
+            // if(question_03 == "a")
+            // {
+            //     count++;
+            // }
+            // alert("you got " + count + " marks");
+            var formData = new FormData(document.getElementById('testform'))
+            console.log(formData)
+
+            $("#testform").submit(function (event) {
+                var settings = {
+                    "url": "http://localhost:8080/api/objectivetest/check",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    "data": formData
+                };
+                $.ajax(settings).done(function (response) {
+                    $("#form").append("<br>" + response)
+                });
+                event.preventDefault();
+            });
+
+            alert("Đã nộp bài")
         }
         $.ajax({
             url: "http://localhost:8080/api/subject?id=" + params.sbjid,
