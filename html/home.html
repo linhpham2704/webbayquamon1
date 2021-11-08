@@ -7,6 +7,8 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../css/main.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
     <title>Bayquamon</title>
 </head>
 
@@ -58,7 +60,7 @@
                 <form class="d-flex" method="get" action="/">
                     <input class="form-control" type="search" name="text" placeholder="Search" aria-label="Search">
                 </form>
-                <button id="login" type="button" class="btn btn-outline-light ms-4" data-bs-toggle="modal" data-bs-target="#modal-login">Login</button>
+                <button  id="login" type="button" class="btn btn-outline-light ms-4" data-bs-toggle="modal" data-bs-target="#modal-login">Login</button>
                 <div class="dropdown">
                     <img id="avatar"  src="../images/user.svg" data-bs-toggle="dropdown" width="38x" height="38x"
                          class="user avatar rounded-circle ms-3 d-none dropdown-toggle">
@@ -68,7 +70,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#" onclick="firebase.auth().signOut();">Sign out</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="handleSignedOutUser()">Sign out</a></li>
                     </ul>
                 </div>
                 <div class="modal fade d-block1" id="modal-login" tabindex="-1" aria-hidden="true">
@@ -82,18 +84,7 @@
                                 <div id="" class="guest">
                                     <div class="container-1">
                                         <form action="/">
-                                            <div class="row">
-                                                <div>
-                                                    <a href="#" class="fb btn4">
-                                                        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-                                                    </a>
-                                                    <a href="#" class="twitter btn4">
-                                                        <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-                                                    </a>
-                                                    <a href="#" class="google btn4"><i class="fa fa-google fa-fw">
-                                                    </i> Login with Google+
-                                                    </a>
-                                                </div>
+                                            <div id="firebaseui-auth-container"></div>
 
                                                 <div class="d-flex justify-content-center pt-3" style="font-size: 30px; color: gray">
                                                     OR
@@ -121,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer d-none user">
-                                <button id="sign-out" type="button" class="btn btn-danger" onclick="firebase.auth().signOut();">Sign out</button>
+                                <button id="sign-out" type="button" class="btn btn-danger" onclick="handleSignedOutUser()">Sign out</button>
                             </div>
                         </div>
                     </div>
@@ -326,7 +317,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <script src="../../js/main.js"></script>
+    <script src="../js/main.js"></script>
 </footer>
 
 </body>
