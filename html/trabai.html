@@ -133,35 +133,25 @@
             <div class="d-flex justify-content-end" style="font-size: 20px; color: white;">00:00</div>
         </div>
     </nav>
-    <nav>
-        <div class="tab-tn">
-<!--            <button class="tablinks" onclick="" id="defaultOpen">Tổng hợp 1</button>-->
-<!--            <button class="tablinks" onclick="">Title 2</button>-->
-        </div>
-    </nav>
-    <!-- Navbar -->
 </header>
 <main>
     <div class="main">
         <form name="myform" id='testform' method="post" action="http://localhost:8080/api/objectivetest/check">
-        <div id="Title1" class="content-tn">
-
-        </div>
+            <div id="Title1" class="content-tn">
+            </div>
         </form>
-
-        <div id="Title2" class="content-tn">
-<!--            <h1>Title</h1>-->
-        </div>
     </div>
 
     <script>
         window.onscroll = function() {myFunction()};
-        let url = $(location)[0].href;
+
         var header = document.getElementById("myHeader");
         var sticky = header.offsetTop;
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
         console.log(params)
+        let testresult = sessionStorage.getItem("testresult")
+        console.log(testresult)
 
         function myFunction() {
             if (window.pageYOffset > sticky) {
@@ -170,88 +160,53 @@
                 header.classList.remove("sticky");
             }
         }
-
-        function openTitle(evt, til) {
-            console.log(evt+til)
-            var i, contenttn, tablinks;
-            contenttn = document.getElementsByClassName("content-tn");
-            for (i = 0; i < contenttn.length; i++) {
-                contenttn[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById("Title1").style.display = "block";
-            $.ajax({
-                url: "http://localhost:8080/api/objectivetest?id=" + til,
-                type: "GET"
-            }).done(function (data) {
-                let objecques = data;
-                console.log(objecques)
-                $("#Title1").empty()
-                $("#Title1").append("<input type='hidden' name='testName' value='"+objecques.testName+"'></input>")
-                jQuery.each(objecques.questions, function (i, val) {
-                    let num = i + 1;
-                    let answers = val.answers;
-                    let title = val.title;
-                    if (/^\d*./.test(val.title))
-                        title = val.title.substring(val.title.indexOf(".") + 1).trim();
-                    if (/^Câu \d*:/.test(val.title))
-                        title = val.title.substring(val.title.indexOf(":") + 1).trim();
-                    $("#Title1").append("<div id='question_" + num + "'>"
-                        + num + ". " + title)
-                    $("#Title1").append("<input type='hidden' name='" + "qid_" + num + "' value='"+val.id+"'></input>")
-                    if (val.image != null)
-                        $("#Title1").append("<img src='" + val.image + "'></img> <br>")
-                    jQuery.each(answers, function (a_i, a_val) {
-                        $("#Title1").append("<input type='radio' name='" + "answer_" + num + "' id='" + "answer_" + num + "_"+a_val.answerHead+"' value='"+a_val.answer+"'>" + a_val.answer + "</input> <br>")
-                    })
-
-                    $("#Title1").append("</p> <br> </div>")
-                })
-                $('#Title1').append("<div class='d-flex justify-content-center align-items-center pt-2'>\n" +
-                    "                <button class='btn btn-outline-primary' type='button' onclick='check()' style='border-radius: 27px;'>Nộp bài</button>\n" +
-                    "            </div>")
-            })
-            evt.currentTarget.className += " active";
-        }
-
-        function check()
-        {
-            var formData = new FormData(document.getElementById('testform'))
-            var formDataEntries = formData.entries()
-            var postdata=url.substring(url.indexOf("?")+1);
-            let f = formDataEntries.next();
-            while (!f.done) {
-                postdata=postdata+"&"+f.value[0]+"="+f.value[1];
-                f = formDataEntries.next();
-            }
-            console.log(postdata)
-
-            alert("Đã nộp bài")
-            window.location.replace("trabai.html?"+postdata);
-        }
         $.ajax({
-            url: "http://localhost:8080/api/subject?id=" + params.sbjid,
-            type: "GET"
-        }).done(function (data) {
-            let subject= data;
-            console.log(subject)
-            $("#subjectName").append(subject.name);
-            first=true
-            jQuery.each(subject.objectiveTest_name_id, function (i,val){
-                if(first){
-                    $(".tab-tn").append("<button class=\"tablinks\" onclick=\"openTitle(event,"+val+")\" id='defaultOpen'>"+i+"</button>")
-                    // Get the element with id="defaultOpen" and click on it
-                    first=false
+            "url": "http://localhost:8080/api/objectivetest/check",
+            "method": "POST",
+            "data": params,
+        }).done(function (response) {
+            let testresult = response;
+            sessionStorage.setItem("testresult", testresult);
+            console.log(testresult)
+            $("#Title1").empty()
+            $("#Title1").append("<h1>"+testresult.testName+"</h1><h2>Trả bài</h2><br><div style='color: green'><h3>Điểm của bạn là: "+testresult.score+"/"+testresult.totalScore+"</h3></div><br>")
+            jQuery.each(testresult.formAnswerList, function (i, val) {
+                let q=val.question;
+                let num = i + 1;
+                let answers = q.answers;
+                let title = q.title;
+                if (/^\d*./.test(q.title))
+                    title = q.title.substring(q.title.indexOf(".") + 1).trim();
+                if (/^Câu \d*:/.test(val.title))
+                    title = q.title.substring(q.title.indexOf(":") + 1).trim();
+                $("#Title1").append("<div id='question_" + num + "'><b>"
+                    + num + ". " + title+"</b>")
+                $("#Title1").append("<input type='hidden' name='" + "qid_" + num + "' value='"+q.id+"'></input>")
+                if (q.image != null)
+                    $("#Title1").append("<img src='" + q.image + "'></img> <br>")
+                jQuery.each(answers, function (a_i, a_val) {
+                    $("#Title1").append("<div id='text_answer_" + num + "_"+a_val.answerHead+"'>" + a_val.answer + "<div>")
+                })
+                if(val.answerHead!='.'){
+                    if(val.check) document.getElementById("text_answer_" + num + "_"+val.answerHead).style.color='blue';
+                    else document.getElementById("text_answer_" + num + "_"+val.answerHead).style.color='red';
+                }
+                $("#Title1").append("<div id='result_"+num+"'></div> <div id='solution_"+num+"' style='color: grey'></div> <div id='feedback_"+num+"' style='color: yellow'></div> </p> <br> </div>")
+                if(val.check){
+                    $("#result_"+num).append("Đúng");
+                    document.getElementById("result_"+num).style.color='blue';
                 }
                 else{
-                    $(".tab-tn").append("<button class=\"tablinks\" onclick=\"openTitle(event,"+val+")\">"+i+"</button>")
+                    $("#result_"+num).append("Sai");
+                    document.getElementById("result_"+num).style.color='red';
+                    $("#solution_"+num).append("Câu trả lời đúng là: <br>"+q.solution);
+                }
+                if(q.feedback!=null){
+                    $("#feedback_"+num).append("Phản hồi: <br>"+q.solution);
                 }
             })
-            document.getElementById("defaultOpen").click()
-        })
+            alert("Trả bài");
+        });
     </script>
 </main>
 
