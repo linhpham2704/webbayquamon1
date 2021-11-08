@@ -165,33 +165,13 @@
     </div>
     <div class="container pt-5 text-left">
         <h1 class="mb-3" style="font-size: 40px; color: #233C58;">Môn đại cương</h1>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px">
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 id="2" class="card-title text-center"></h5>
-                </div>
-
-            </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 id="5" class="card-title text-center"></h5>
-                </div>
-
-            </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 id="6" class="card-title text-center"></h5>
-                </div>
-            </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
-            </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px" id="mondc">
+<!--            <div class="col">-->
+<!--                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>-->
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title text-center">Card title</h5>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <div class="d-flex justify-content-center align-items-center pt-3">
             <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
@@ -203,31 +183,13 @@
 
     <div class="container pt-5 text-left">
         <h1 class="mb-3" style="font-size: 40px; color: #233C58;">Môn chuyên ngành</h1>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px">
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
-            </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
-            </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
-            </div>
-            <div class="col">
-                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                </div>
-            </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px" id="moncn">
+<!--            <div class="col">-->
+<!--                <a href="tracnghiem2.html"><img class="card-img-top" src="../images/ebook.png" alt="Card image cap"></a>-->
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title text-center">Card title</h5>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <div class="d-flex justify-content-center align-items-center pt-3">
             <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
@@ -253,30 +215,30 @@
             }
         }
         $.ajax({
-            url: "http://localhost:8080/api/subject?id=" + 2,
+            url: "http://localhost:8080/api/home",
             type: "GET"
         }).done(function (data) {
-            let subject = data;
-            $("#2").append(subject.name)
-            console.log(subject.name)
+            let subjectlist = data;
+            console.log(subjectlist)
+            jQuery.each(subjectlist,function (i,value){
+                if("đại cương" === value.type){
+                    $("#mondc").append("<div class=\"col\">\n" +
+                        "                <a href=\"tracnghiem2.html?sbjid="+value.subjectId+"\"><img class=\"card-img-top\" src=\""+value.poster+"\" alt=\"Card image cap\"></a>\n" +
+                        "                <div class=\"card-body\">\n" +
+                        "                    <h5 class=\"card-title text-center\">"+value.name+"</h5>\n" +
+                        "                </div>\n" +
+                        "            </div>")
+                }
+                if("chuyên ngành" === value.type) {
+                    $("#moncn").append("<div class=\"col\">\n" +
+                        "                <a href=\"tracnghiem2.html?sbjid="+value.subjectId+"\"><img class=\"card-img-top\" src=\""+value.poster+"\" alt=\"Card image cap\"></a>\n" +
+                        "                <div class=\"card-body\">\n" +
+                        "                    <h5 class=\"card-title text-center\">"+value.name+"</h5>\n" +
+                        "                </div>\n" +
+                        "            </div>")
+                }
+            })
         })
-        $.ajax({
-            url: "http://localhost:8080/api/subject?id=" + 5,
-            type: "GET"
-        }).done(function (data) {
-            let subject = data;
-            $("#5").append(subject.name)
-            console.log(subject.name)
-        })
-        $.ajax({
-            url: "http://localhost:8080/api/subject?id=" + 6,
-            type: "GET"
-        }).done(function (data) {
-            let subject = data;
-            $("#6").append(subject.name)
-            console.log(subject.name)
-        })
-
     </script>
 </main>
 
