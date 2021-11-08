@@ -165,6 +165,11 @@
                 header.classList.remove("sticky");
             }
         }
+
+        function redo(url){
+            window.location.replace(url);
+        }
+
         $.ajax({
             "url": "http://localhost:8080/api/objectivetest/check",
             "method": "POST",
@@ -216,7 +221,7 @@
             redo=redo+"?sbjid="+params.sbjid;
             redo=redo+"&testName="+params.testName;
             $('#Title1').append("<div class='d-flex justify-content-center align-items-center pt-2'>\n" +
-                "                <button class='btn btn-outline-primary' type='button' onclick='window.location.replace("+redo+")' style='border-radius: 27px;'>Làm lại</button>\n" +
+                "                <button class='btn btn-outline-primary' type='button' onclick='redo("+redo+")' style='border-radius: 27px;'>Làm lại</button>\n" +
                 "            </div>")
             alert("Trả bài");
 
