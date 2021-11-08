@@ -204,7 +204,8 @@
                 else{
                     $("#result_"+num).append("Sai");
                     document.getElementById("result_"+num).style.color='red';
-                    $("#solution_"+num).append("Câu trả lời đúng là: <br>"+q.solution);
+                    if(q.solution!=null)
+                        $("#solution_"+num).append("Câu trả lời đúng là: <br>"+q.solution);
                 }
                 if(q.feedback!=null){
                     $("#feedback_"+num).append("Phản hồi: <br>"+q.solution);
