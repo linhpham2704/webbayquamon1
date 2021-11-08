@@ -211,7 +211,7 @@
                     $("#Title1").append("</p> <br> </div>")
                 })
                 $('#Title1').append("<div class='d-flex justify-content-center align-items-center pt-2'>\n" +
-                    "                <button  class='btn btn-outline-primary' onclick='check()' style='border-radius: 27px;'>Nộp bài</button>\n" +
+                    "                <button class='btn btn-outline-primary' type='button' onclick='check()' style='border-radius: 27px;'>Nộp bài</button>\n" +
                     "            </div>")
             })
             evt.currentTarget.className += " active";
@@ -219,45 +219,62 @@
 
         function check()
         {
-            // var question_01 = document.getElementsByName("answer_1").values();
-            // var question_02 = document.getElementsByName("answer_2").values();
-            // var question_03 = document.getElementsByName("answer_3").values();
-            // for (q in question_01){
-            //     console.log(q)
-            // }
-            //
-            //
-            // var count = 0;
-            // if(question_01 == "c")
-            // {
-            //     count++;
-            // }
-            // if(question_02 == "a")
-            // {
-            //     count++;
-            // }
-            // if(question_03 == "a")
-            // {
-            //     count++;
-            // }
-            // alert("you got " + count + " marks");
             var formData = new FormData(document.getElementById('testform'))
-            console.log(formData)
-
-            $("#testform").submit(function (event) {
-                var settings = {
-                    "url": "http://localhost:8080/api/objectivetest/check",
-                    "method": "POST",
-                    "timeout": 0,
-                    "headers": {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    "data": formData
-                };
-                $.ajax(settings).done(function (response) {
-                    $("#form").append("<br>" + response)
-                });
-                event.preventDefault();
+            var formDataEntries = formData.entries()
+            var postdata="";
+            let f = formDataEntries.next();
+            postdata=postdata+f.value[0]+"="+f.value[1];
+            f= formDataEntries.next();
+            while (!f.done) {
+                postdata=postdata+"&"+f.value[0]+"="+f.value[1];
+                f = formDataEntries.next();
+            }
+            console.log(postdata)
+            $.ajax({
+                "url": "http://localhost:8080/api/objectivetest/check",
+                "method": "POST",
+                "data": postdata,
+            }).done(function (response) {
+                let testresult = response;
+                console.log(testresult)
+                $("#Title1").empty()
+                $("#Title1").append("<h1>Trả bài</h1><br><div style='color: green'><h3>Điểm của bạn là: "+testresult.score+"/"+testresult.totalScore+"</h3></div><br>")
+                jQuery.each(testresult.formAnswerList, function (i, val) {
+                    let q=val.question;
+                    let num = i + 1;
+                    let answers = q.answers;
+                    let title = q.title;
+                    if (/^\d*./.test(q.title))
+                        title = q.title.substring(q.title.indexOf(".") + 1).trim();
+                    if (/^Câu \d*:/.test(val.title))
+                        title = q.title.substring(q.title.indexOf(":") + 1).trim();
+                    $("#Title1").append("<div id='question_" + num + "'><b>"
+                        + num + ". " + title+"</b>")
+                    $("#Title1").append("<input type='hidden' name='" + "qid_" + num + "' value='"+q.id+"'></input>")
+                    if (q.image != null)
+                        $("#Title1").append("<img src='" + q.image + "'></img> <br>")
+                    jQuery.each(answers, function (a_i, a_val) {
+                        $("#Title1").append("<div id='text_answer_" + num + "_"+a_val.answerHead+"'>" + a_val.answer + "<div>")
+                    })
+                    if(val.answerHead!='.'){
+                        if(val.check) document.getElementById("text_answer_" + num + "_"+val.answerHead).style.color='blue';
+                        else document.getElementById("text_answer_" + num + "_"+val.answerHead).style.color='red';
+                    }
+                    $("#Title1").append("<div id='result_"+num+"'></div> <div id='solution_"+num+"' style='color: grey'></div> <div id='feedback_"+num+"' style='color: yellow'></div> </p> <br> </div>")
+                    if(val.check){
+                        $("#result_"+num).append("Đúng");
+                        document.getElementById("result_"+num).style.color='blue';
+                    }
+                    else{
+                        $("#result_"+num).append("Sai");
+                        document.getElementById("result_"+num).style.color='red';
+                        $("#solution_"+num).append("Câu trả lời đúng là: <br>"+q.solution);
+                    }
+                    if(q.feedback!=null){
+                        $("#feedback_"+num).append("Phản hồi: <br>"+q.solution);
+                    }
+                })
+                alert("Trả bài");
             });
 
             alert("Đã nộp bài")
