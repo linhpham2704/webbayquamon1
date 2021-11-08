@@ -141,7 +141,11 @@
             </div>
         </form>
     </div>
+    <div class="card shadow-0 border mt-5" style="background-color: #f0f2f5;">
+        <div class="card-body p-4" id="comment">
 
+        </div>
+    </div>
     <script>
         window.onscroll = function() {myFunction()};
 
@@ -206,6 +210,39 @@
                 }
             })
             alert("Trả bài");
+            $.ajax({
+                url: "http://localhost:8080/api/comment?id=" + params.objectiveTestId,
+                type: "GET"
+            }).done(function (data) {
+                let comments = data;
+                console.log("list.length = " + comments.length)
+                console.log(comments)
+                $("#comment").append("<h5 class=\"mb-4\"> Comments (<span>" + comments.length + "</span>)</h5>"
+                    + "<form class=\"d-flex user d-none\" method=\"post\" action='#'>\n" +
+                    "                    <div class=\"flex-grow-1\"><input type=\"text\" class=\"form-control\" name=\"comment\" placeholder=\"Comment\"/></div>\n" +
+                    "                    </div>\n" +
+                    "                </form>")
+                jQuery.each(comments, function (i, val) {
+                    $("#comment").append(
+                        "            <div class=\"card\">\n" +
+                        "                <div class=\"card-body\">\n" +
+                        "                    <div class=\"d-flex\">\n" +
+                        "                        <img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png\" alt=\"avatar\" width=\"40\" height=\"40\"/>\n" +
+                        "                        <div class=\"d-flex flex-column \">\n" +
+                        "                            <p class=\"small m-0 ms-2\"><span>" + val.name + "</span></p>\n" +
+                        "                            <p class=\"small m-0 ms-2 text-muted\"><span>" + val.email + "</span></p>\n" +
+                        "                        </div>\n" +
+                        "                        <div class=\"flex-grow-1 text-end small m-0 ms-2 text-muted\"><span>" + val.timeAgo + "</span></div>\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "                    <div class=\"mt-2\"><span>" + val.text + "</span></div>\n" +
+                        "\n" +
+                        "                </div>\n" +
+                        "            </div> <hr>");
+                })
+            }).fail(function (xhr, status, errorThrown) {
+                $("#title").html("Sorry, there was a problem!")
+            })
         });
     </script>
 </main>

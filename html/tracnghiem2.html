@@ -190,7 +190,8 @@
                 let objecques = data;
                 console.log(objecques)
                 $("#Title1").empty()
-                $("#Title1").append("<input type='hidden' name='testName' value='"+objecques.testName+"'></input>")
+                $("#Title1").append("<input type='hidden' name='testName' value='"+objecques.testName+"'></input>" +
+                    "<input type='hidden' name='objectiveTestId' value='"+objecques.objectiveTestId+"'></input>")
                 jQuery.each(objecques.questions, function (i, val) {
                     let num = i + 1;
                     let answers = val.answers;
