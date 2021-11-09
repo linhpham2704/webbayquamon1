@@ -133,10 +133,8 @@
             <div class="d-flex justify-content-end" style="font-size: 20px; color: white;" id="countdown">
                 00:00:00
             </div>
-            <div>
-                <input type="hidden" id="countdown_time"></input>
-                <input type="hidden" id="countdown_change" value="1"></input>
-            </div>
+            <input type="hidden" id="countdown_time"></input>
+            <input type="hidden" id="countdown_change" value="1"></input>
         </div>
     </nav>
 
@@ -366,7 +364,7 @@
         var distance=0;
         var dotime=0;
         var x = setInterval(function () {
-            countdown_change = document.getElementById("#countdown_change").getAttribute("value");
+            countdown_change = document.getElementById("countdown_change").getAttribute("value");
             if(change!=countdown_change) {
                 change=countdown_change;
                 time = document.getElementById("countdown_time").getAttribute("value") * 60000;
