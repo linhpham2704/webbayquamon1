@@ -192,6 +192,7 @@
                 console.log(objecques)
                 $("#countdown").append("<input type='hidden' id=\"countdown_time\" value=\""+objecques.time+"\"></input>");
                 $("#Title1").empty()
+                $("#Title1").append("<input type='hidden' id=\"time\" value=\""+objecques.time+"\"></input>");
                 $("#Title1").append("<input type='hidden' name='testName' value='"+objecques.testName+"'></input>" +
                     "<input type='hidden' name='objectiveTestId' value='"+objecques.objectiveTestId+"'></input>")
                 jQuery.each(objecques.questions, function (i, val) {
@@ -221,8 +222,7 @@
         }
 
 
-        function check()
-        {
+        function check(){
             var formData = new FormData(document.getElementById('testform'))
             var formDataEntries = formData.entries()
             var postdata=url.substring(url.indexOf("?")+1);
@@ -233,6 +233,7 @@
                 postdata=postdata+"&"+f.value[0]+"="+value;
                 f = formDataEntries.next();
             }
+            postdata=postdata+"&dotime="+dotime;
             console.log(postdata)
 
             alert("Đã nộp bài")
@@ -271,6 +272,7 @@
         //Countdown
         var time=0;
         var distance=0;
+        var dotime=0;
         var x = setInterval(function () {
             if(document.getElementById("countdown_time")!=null) {
                 time = document.getElementById("countdown_time").getAttribute("value") * 60000;
@@ -283,8 +285,6 @@
                 document.getElementById("countdown").innerHTML = twodigits(hours) + ":"
                     + twodigits(minutes) + ":" + twodigits(seconds);
             }
-            else console.log("NO")
-            console.log(time+"--"+distance)
             // Update the count down every 1 second
             if(time>0) {
                 // Get today's date and time
@@ -297,6 +297,7 @@
                 // Display the result in the element with id="countdown"
                 document.getElementById("countdown").innerHTML = twodigits(hours) + ":"
                     + twodigits(minutes) + ":" + twodigits(seconds);
+                dotime=time-distance;
                 // If the count down is finished, write some text
                 if (distance < 0) {
                     clearInterval(x);
