@@ -182,7 +182,8 @@
             var dotime = ""
             if(minutes>0) dotime = minutes + " phút";
             if(seconds>0) dotime = dotime + " " + seconds +" giây";
-            $("#Title1").append("<div style='color: green'><h3>Thời gian làm bài: "+dotime+"/"+testresult.time+" phút</h3></div><br>")
+            if(time>0)
+                $("#Title1").append("<div style='color: green'><h3>Thời gian làm bài: "+dotime+"/"+testresult.time+" phút</h3></div><br>")
 
             jQuery.each(testresult.formAnswerList, function (i, val) {
                 let q=val.question;
