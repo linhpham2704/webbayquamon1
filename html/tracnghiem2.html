@@ -130,7 +130,10 @@
     <nav id="myHeader" class="navbar navbar-expand-md navbar-dark bg">
         <div class="container container-fluid">
             <div style="font-size: 30px; color: white;" id="subjectName"></div>
-            <div class="d-flex justify-content-end" style="font-size: 20px; color: white;" id="countdown">00:00:00</div>
+            <div class="d-flex justify-content-end" style="font-size: 20px; color: white;" id="countdown">
+                00:00:00
+            </div>
+            <input type="hidden" id="countdown_time"></input>
         </div>
     </nav>
 
@@ -186,7 +189,7 @@
 
     <script>
         window.onscroll = function() {myFunction()};
-        
+
         var header = document.getElementById("myHeader");
         var sticky = header.offsetTop;
         const urlSearchParams = new URLSearchParams(window.location.search);
@@ -219,7 +222,7 @@
             }).done(function (data) {
                 let objecques = data;
                 console.log(objecques)
-                $("#countdown").append("<input type='hidden' id=\"countdown_time\" value=\""+objecques.time+"\"></input>");
+                document.getElementById("countdown_time").setAttribute("value",objecques.time);
                 $("#Title1").empty()
                 $("#Title1").append("<input type='hidden' name=\"time\" value=\""+objecques.time+"\"></input>");
                 $("#Title1").append("<input type='hidden' name='testName' value='"+objecques.testName+"'></input>" +
@@ -357,18 +360,19 @@
         var distance=0;
         var dotime=0;
         var x = setInterval(function () {
-            if(document.getElementById("countdown_time")!=null) {
-                time = document.getElementById("countdown_time").getAttribute("value") * 60000;
-                distance = time;
+            countdown_time = document.getElementById("countdown_time").getAttribute("value") * 60000;
+            if(countdown_time!=time) {
+                console.log(countdown_time+"!="+time);
+                distance = countdown_time;
                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
                 // Display the result in the element with id="countdown"
                 document.getElementById("countdown").innerHTML = twodigits(hours) + ":"
                     + twodigits(minutes) + ":" + twodigits(seconds);
             }
             // Update the count down every 1 second
+            time=countdown_time;
             if(time>0) {
                 // Get today's date and time
                 // Find the distance between now and the count down date
