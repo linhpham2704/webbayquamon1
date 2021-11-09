@@ -57,7 +57,7 @@
                         <a class="nav-link" href="#" style="font-size: 20px">Về chúng tôi</a>
                     </li>
                 </ul>
-                <form class="d-flex" method="get" action="/">
+                <form class="d-flex" method="get" action="tracnghiem.html">
                     <input class="form-control" type="search" name="text" placeholder="Search" aria-label="Search">
                 </form>
                 <button id="login" type="button" class="btn btn-outline-secondary ms-4" data-bs-toggle="modal" data-bs-target="#modal-login">Login</button>
@@ -141,7 +141,7 @@
 </header>
 
 <main>
-    <div class="main">
+    <div class="main2">
         <form name="myform" id='testform' method="post" action="http://localhost:8080/api/objectivetest/check">
             <div id="Title1" class="content-nb">
             </div>
@@ -255,9 +255,19 @@
         }).done(function (response) {
             let testresult = response;
             sessionStorage.setItem("testresult", testresult);
-            console.log(testresult)
+            console.log(response)
             $("#Title1").empty()
-            $("#Title1").append("<h1>"+testresult.testName+"</h1><h2>Trả bài</h2><br><div style='color: green'><h3>Điểm của bạn là: "+testresult.score+"/"+testresult.totalScore+"</h3></div><br>")
+            $("#Title1").append("<h1>"+testresult.testName+"</h1><h2>Trả bài</h2><br><div style='color: green'><h3>Điểm của bạn là: "+testresult.score+"/"+testresult.totalScore+"</h3></div>")
+            distance=testresult.dotime;
+            var minutes = Math.floor((distance / (1000 * 60)));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var dotime = ""
+            if(minutes>0) dotime = minutes + " phút";
+            if(seconds>0) dotime = dotime + " " + seconds +" giây";
+            if(testresult.time>0)
+                $("#Title1").append("<div style='color: green'><h3>Thời gian làm bài: "+dotime+"/"+testresult.time+" phút</h3></div>")
+            $("#Title1").append("<br>");
+
             jQuery.each(testresult.formAnswerList, function (i, val) {
                 let q=val.question;
                 let num = i + 1;

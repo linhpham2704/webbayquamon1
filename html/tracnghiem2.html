@@ -52,7 +52,7 @@
                         <a class="nav-link" href="#" style="font-size: 20px">Về chúng tôi</a>
                     </li>
                 </ul>
-                <form class="d-flex" method="get" action="/">
+                <form class="d-flex" method="get" action="tracnghiem.html">
                     <input class="form-control" type="search" name="text" placeholder="Search" aria-label="Search">
                 </form>
                 <button id="login" type="button" class="btn btn-outline-secondary ms-4" data-bs-toggle="modal" data-bs-target="#modal-login">Login</button>
@@ -130,9 +130,10 @@
     <nav id="myHeader" class="navbar navbar-expand-md navbar-dark bg">
         <div class="container container-fluid">
             <div style="font-size: 30px; color: white;" id="subjectName"></div>
-            <div class="d-flex justify-content-end" style="font-size: 20px; color: white;">00:00</div>
+            <div class="d-flex justify-content-end" style="font-size: 20px; color: white;" id="countdown">00:00:00</div>
         </div>
     </nav>
+
     <nav>
         <div class="tab-tn">
 <!--            <button class="tablinks" onclick="" id="defaultOpen">Tổng hợp 1</button>-->
@@ -217,7 +218,9 @@
             }).done(function (data) {
                 let objecques = data;
                 console.log(objecques)
+                $("#countdown").append("<input type='hidden' id=\"countdown_time\" value=\""+objecques.time+"\"></input>");
                 $("#Title1").empty()
+                $("#Title1").append("<input type='hidden' name=\"time\" value=\""+objecques.time+"\"></input>");
                 $("#Title1").append("<input type='hidden' name='testName' value='"+objecques.testName+"'></input>" +
                     "<input type='hidden' name='objectiveTestId' value='"+objecques.objectiveTestId+"'></input>")
                 jQuery.each(objecques.questions, function (i, val) {
@@ -247,16 +250,18 @@
         }
 
 
-        function check()
-        {
+        function check(){
             var formData = new FormData(document.getElementById('testform'))
             var formDataEntries = formData.entries()
             var postdata=url.substring(url.indexOf("?")+1);
             let f = formDataEntries.next();
             while (!f.done) {
-                postdata=postdata+"&"+f.value[0]+"="+f.value[1];
+                value=f.value[1]
+                if(f.value[0].startsWith("answer")) value=value.split(".")[0];
+                postdata=postdata+"&"+f.value[0]+"="+value;
                 f = formDataEntries.next();
             }
+            postdata=postdata+"&dotime="+dotime;
             console.log(postdata)
 
             alert("Đã nộp bài")
@@ -286,6 +291,49 @@
             else
                 document.getElementById(params.testName).click()
         })
+
+        function twodigits(value){
+            if (value<10) return "0"+value;
+            else return value;
+        }
+
+        //Countdown
+        var time=0;
+        var distance=0;
+        var dotime=0;
+        var x = setInterval(function () {
+            if(document.getElementById("countdown_time")!=null) {
+                time = document.getElementById("countdown_time").getAttribute("value") * 60000;
+                distance = time;
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="countdown"
+                document.getElementById("countdown").innerHTML = twodigits(hours) + ":"
+                    + twodigits(minutes) + ":" + twodigits(seconds);
+            }
+            // Update the count down every 1 second
+            if(time>0) {
+                // Get today's date and time
+                // Find the distance between now and the count down date
+                distance = distance - 1000;
+                // Time calculations for days, hours, minutes and seconds
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                // Display the result in the element with id="countdown"
+                document.getElementById("countdown").innerHTML = twodigits(hours) + ":"
+                    + twodigits(minutes) + ":" + twodigits(seconds);
+                dotime=time-distance;
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "Hết giờ";
+                    check();
+                }
+            }
+        }, 1000);
     </script>
 </main>
 

@@ -209,66 +209,7 @@
     font-size: 18px;
     overflow-y: auto;
 }
-.content-th{
-    float: right;
-    padding: 20px 50px;
-    border: none;
-    width: 25%;
-    height: 300px;
-    font-size: 18px;
-    overflow-y: auto;
-    /*background-color: #9b59b6;*/
-}
-/*hbhhh*/
-div.divActivitesm{
 
-    width: 200px;
-    height:200px;
-    border-color: #4EC9E1;
-    text-align: center;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-    box-shadow: 5px 5px 5px cadetblue;
-    -moz-box-shadow: 5px 5px 5px cadetblue;
-    -webkit-box-shadow: 5px 5px 5px cadetblue;
-
-}
-#divActivites1{
-    width: 200px;
-    height: 50px;
-    background-color: #4EC9E1;
-}
-.containerm {
-    width: 200px;
-    height: auto;
-
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-
-}
-.cardm{
-    border: 0;
-}
-.itemm{
-    color: black;
-    font-weight: bold;
-    font-size: 1rem;
-    text-align: center;
-    padding: 1px;
-    height: 30px;
-    border-color:  #4EC9E1;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 2px;
-    box-shadow: 1px 1px 1px cadetblue;
-    -moz-box-shadow: 1px 1px 1px cadetblue;
-    -webkit-box-shadow: 1px 1px 1px cadetblue;
-    margin-right:5px;
-    margin-bottom: 5px;
-
-
-}
 /* Style the tab */
 .tab-tn {
     float: left;
@@ -284,7 +225,6 @@ div.divActivitesm{
 .main{
     padding-left: 20%;
 }
-
 
 .card shadow-0 border mt-5{
 }
@@ -374,30 +314,4 @@ div.divActivitesm{
 .input[type=submit]:hover {
     background-color: #26A9E0;
 }
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
 
-
-.card1 {
-    position: relative;
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #d2d2dc;
-    border-radius: 11px;
-    -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
-    box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
-}
-
-.media img {
-    width: 60px;
-    height: 60px
-}
-
-.reply a {
-    text-decoration: none
-}
