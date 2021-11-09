@@ -362,8 +362,8 @@
         var x = setInterval(function () {
             countdown_time = document.getElementById("countdown_time").getAttribute("value") * 60000;
             if(countdown_time!=time) {
-                console.log(countdown_time+"!="+time);
-                distance = countdown_time;
+                time = countdown_time;
+                distance = time;
                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -372,7 +372,6 @@
                     + twodigits(minutes) + ":" + twodigits(seconds);
             }
             // Update the count down every 1 second
-            time=countdown_time;
             if(time>0) {
                 // Get today's date and time
                 // Find the distance between now and the count down date
