@@ -151,7 +151,7 @@
         </form>
 
         <div id="Title2" class="content-th">
-            <div class="divActivitesm"  style="border: thin solid #4EC9E1; height: auto" >
+            <div class="divActivitesm"  style="border: thin solid #4EC9E1; height: 100%">
                 <p></p>
                 <h5 style="color: crimson">
                 <span>
@@ -259,16 +259,16 @@
 
         function pages(len,page){
             $(".containerm").empty();
-            skip = 28;
+            skip = 48;
             begin = (page-1)*skip;
             end = (page-1)*skip+skip;
             if(end>=len) end=len;
             for (let j = begin; j < end; j++) {
                 num=j+1;
-                $(".containerm").append("<div class=\"itemm item"+num+"\"><a href='#question_" + num + "'>" + num + "</a></div>");
+                $(".containerm").append("<a href='#question_" + num + "'><div type='button' class=\"itemm item"+num+"\">" + num + "</div></a>");
             }
-            if(begin>0) $(".containerm").prepend("<div class=\"itemm item_back\"><a href='javascript:pages("+len+","+(page-1)+");' id='next'>...</a></div>");
-            if(end<len) $(".containerm").append("<div class=\"itemm item_next\"><a href='javascript:pages("+len+","+(page+1)+");' id='next'>...</a></div>");
+            if(begin>0) $(".containerm").prepend("<a href='javascript:pages("+len+","+(page-1)+");' id='back'><div type='button' class=\"itemm item_back\">...</div></a>");
+            if(end<len) $(".containerm").append("<a href='javascript:pages("+len+","+(page+1)+");' id='next'><div type='button' class=\"itemm item_next\">...</div></a>");
         }
 
 
