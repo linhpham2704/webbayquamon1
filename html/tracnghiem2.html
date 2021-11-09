@@ -186,7 +186,7 @@
 
     <script>
         window.onscroll = function() {myFunction()};
-        let url = $(location)[0].href;
+        
         var header = document.getElementById("myHeader");
         var sticky = header.offsetTop;
         const urlSearchParams = new URLSearchParams(window.location.search);
@@ -286,7 +286,7 @@
         function check(){
             var formData = new FormData(document.getElementById('testform'))
             var formDataEntries = formData.entries()
-            var postdata=url.substring(url.indexOf("?")+1);
+            var postdata="?sbjid="+params.sbjid;
             let f = formDataEntries.next();
             while (!f.done) {
                 value=f.value[1]
