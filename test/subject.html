@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Subject</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div id="home"></div>
+<br><br>
+<div id="list">
+</div>
+
+<script>
+    $().ready(function (){
+        let server_address="localhost:8080"
+        console.log(server_address)
+        let hostpath = $(location)[0].href
+        let head = hostpath.substring(0, hostpath.indexOf("/subject.html"));
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        console.log(params)
+        $.ajax({
+            url: "http://"+server_address+"/api/subject?id=" + params.id,
+            type: "GET"
+        }).done(function (data) {
+            console.log(head)
+            $("#home").append("<a href='" + head + "/home.html?'>" +
+                "<img src='https://www.apmedia.vn/wp-content/uploads/2018/02/Home-Icon.png' style='height: 23px;width: 23px'>" +
+                "</a>")
+            let subject = data;
+            console.log(subject)
+            $("#list").append("<img src='" + subject.poster + "'><br>" + subject.name + "<br><br>")
+            jQuery.each(subject.objectiveTest_name_id, function (k, value) {
+                $("#list").append("- <a href='" + head + "/objectivetest.html?id=" + value + "'>" +
+                    k + "</a> <br>")
+            })
+        }).fail(function (xhr, status, errorThrown) {
+                $("#title").html("Sorry, there was a problem!")
+        })
+    })
+</script>
+
+</body>
+</html>

@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../css/main.css" rel="stylesheet">
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>Trắc nghiệm</title>
 </head>
 <body>
@@ -138,15 +143,92 @@
 <main>
     <div class="main">
         <form name="myform" id='testform' method="post" action="http://localhost:8080/api/objectivetest/check">
-            <div id="Title1" class="content-tn">
+            <div id="Title1" class="content-nb">
             </div>
         </form>
     </div>
-    <div class="card shadow-0 border mt-5" style="background-color: #f0f2f5;">
-        <div class="card-body p-4" id="comment">
-
-        </div>
-    </div>
+<!--    <div class="card shadow-0 border mt-5" style="background-color: #f0f2f5;">-->
+<!--        <div class="container mb-5 mt-5">-->
+<!--            <div class="card1">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-12">-->
+<!--                        <h3 class="text-center mb-5"> Comments </h3>-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-12">-->
+<!--                                <div class="media"> <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview" src="https://i.imgur.com/stD0Q19.jpg" />-->
+<!--                                    <div class="media-body">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-8 d-flex">-->
+<!--                                                <h5>Maria Smantha</h5> <span>- 2 hours ago</span>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-4">-->
+<!--                                                <div class="pull-right reply"> <a href="#"><span><i class="fa fa-reply"></i> reply</span></a> </div>-->
+<!--                                            </div>-->
+<!--                                        </div> It is a long established fact that a reader will be distracted by the readable content of a page. <div class="media mt-4"> <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/xELPaag.jpg" /></a>-->
+<!--                                        <div class="media-body">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-12 d-flex">-->
+<!--                                                    <h5>Simona Disa</h5> <span>- 3 hours ago</span>-->
+<!--                                                </div>-->
+<!--                                            </div> letters, as opposed to using 'Content here, content here', making it look like readable English.-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                        <div class="media mt-3"> <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/nAcoHRf.jpg" /></a>-->
+<!--                                            <div class="media-body">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-12 d-flex">-->
+<!--                                                        <h5>John Smith</h5> <span>- 4 hours ago</span>-->
+<!--                                                    </div>-->
+<!--                                                </div> the majority have suffered alteration in some form, by injected humour, or randomised words.-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--&lt;!&ndash;                                <div class="media mt-4"> <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview" src="https://i.imgur.com/xELPaag.jpg" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="col-8 d-flex">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <h5>Shad f</h5> <span>- 2 hours ago</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="col-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div class="pull-right reply"> <a href="#"><span><i class="fa fa-reply"></i> reply</span></a> </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div> The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33. <div class="media mt-4"> <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/nUNhspp.jpg" /></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div class="col-12 d-flex">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <h5>Andy flowe</h5> <span>- 5 hours ago</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="media mt-3"> <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/HjKTNkG.jpg" /></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <div class="col-12 d-flex">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <h5>Simp f</h5> <span>- 5 hours ago</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div> a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="media mt-3"> <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/nAcoHRf.jpg" /></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <div class="col-12 d-flex">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <h5>John Smith</h5> <span>- 4 hours ago</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div> the majority have suffered alteration in some form, by injected humour, or randomised words.&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <script>
         window.onscroll = function() {myFunction()};
 

@@ -1,0 +1,92 @@
+<html>
+<head>
+    <title>Subject List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script>
+</head>
+<style>
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        align-content: space-around;
+    }
+    .flex-container > div{
+        height: 300px;
+        width: 210px;
+        margin: 10px;
+        padding: 20px;
+        background-color: aliceblue;
+    }
+    .flex-container1 {
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
+    }
+</style>
+<body>
+<div id="list" class="flex-container1">
+    <h3>Môn đại cương</h3>
+    <div id="dc" class="flex-container">
+
+    </div>
+    <h3>Môn chuyên ngành</h3>
+    <div id="cn" class="flex-container">
+
+    </div>
+</div>
+
+<script>
+    $().ready(function (){
+        let server_address="localhost:8080"
+        console.log(server_address)
+        let hostpath = $(location)[0].href
+        let head = hostpath.substring(0,hostpath.indexOf("/home.html"));
+        $.ajax({
+            url:"http://"+server_address+"/api/home",
+            type:"GET"
+        }).done(function (data) {
+            let subjectlist = data;
+            console.log(subjectlist)
+            jQuery.each(subjectlist,function (i,value){
+                var sbj
+                if("đại cương" === value.type){
+                    $("#dc").append("<div class='card'>" +
+                        "<div class='imgPlaceHolder'>" +
+                        "<a href='" + head + "/subject.html?id=" + value.subjectId + "'>" +
+                        "<img src='" + value.poster + "' alt='image'> " +
+                        "</a> " +
+                        "</div>" +
+                        "<div class='card-body'>" +
+                        "<a href='" + head + "/subject.html?id=" + value.subjectId + "'>" +
+                        "<h4>" + value.name + "</h4>" +
+                        "</a>" +
+                        "</div>" +
+                        "</div>")
+                }
+                if("chuyên ngành" === value.type) {
+                    $("#cn").append("<div class='card'>" +
+                        "<div class='imgPlaceHolder'>" +
+                        "<a href='" + head + "/subject.html?id=" + value.subjectId + "'>" +
+                        "<img src='" + value.poster + "' alt='image'> " +
+                        "</a> " +
+                        "</div>" +
+                        "<div class='card-body'>" +
+                        "<a href='" + head + "/subject.html?id=" + value.subjectId + "'>" +
+                        "<h4>" + value.name + "</h4>" +
+                        "</a>" +
+                        "</div>" +
+                        "</div>")
+                }
+            })
+        }).fail(function (xhr, status, errorThrown) {
+                $("#title").html("Sorry, there was a problem!")
+        })
+    })
+</script>
+
+</body>
+</html>
