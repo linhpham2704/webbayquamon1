@@ -151,7 +151,7 @@
         </form>
 
         <div id="Title2" class="content-th">
-            <div class="divActivitesm"  style="border: thin solid #4EC9E1" >
+            <div class="divActivitesm"  style="border: thin solid #4EC9E1; height: auto" >
                 <p></p>
                 <h5 style="color: crimson">
                 <span>
@@ -160,19 +160,20 @@
                 </h5><hr style="color: #4EC9E1">
                 <div class="cardm">
                     <div class="containerm">
-                        <div class="itemm item1" style="background-color: #4EC9E1" >1</div>
-                        <div class="itemm item2">2</div>
-                        <div class="itemm item3">3</div>
-                        <div class="itemm item4">4</div>
-                        <div class="itemm item5">5</div>
-                        <div class="itemm item6">6</div>
-                        <div class="itemm item7">7</div>
-                        <div class="itemm item8">8</div>
-                        <div class="itemm item9">9</div>
-                        <div class="itemm item10">10</div>
-                        <div class="itemm item10">11</div>
+<!--                        <div class="itemm item1" style="background-color: #4EC9E1" >1</div>-->
+<!--                        <div class="itemm item2">2</div>-->
+<!--                        <div class="itemm item3">3</div>-->
+<!--                        <div class="itemm item4">4</div>-->
+<!--                        <div class="itemm item5">5</div>-->
+<!--                        <div class="itemm item6">6</div>-->
+<!--                        <div class="itemm item7">7</div>-->
+<!--                        <div class="itemm item8">8</div>-->
+<!--                        <div class="itemm item9">9</div>-->
+<!--                        <div class="itemm item10">10</div>-->
+<!--                        <div class="itemm item10">11</div>-->
 
                     </div>
+                    <div class="hiddenv"></div>
                 </div>
 
 
@@ -245,8 +246,29 @@
                 $('#Title1').append("<div class='d-flex justify-content-center align-items-center pt-2'>\n" +
                     "                <button class='btn btn-outline-primary' type='button' onclick='check()' style='border-radius: 27px;'>Nộp bài</button>\n" +
                     "            </div>")
+
+                var len = objecques.questions.length;
+                console.log(len)
+                $(".hiddenv").empty();
+                $(".hiddenv").append("<input type='hidden' id='len' value='"+len+"'></input>");
+                page=1;
+                pages(len,page);
             })
             evt.currentTarget.className += " active";
+        }
+
+        function pages(len,page){
+            $(".containerm").empty();
+            skip = 28;
+            begin = (page-1)*skip;
+            end = (page-1)*skip+skip;
+            if(end>=len) end=len;
+            for (let j = begin; j < end; j++) {
+                num=j+1;
+                $(".containerm").append("<div class=\"itemm item"+num+"\"><a href='#question_" + num + "'>" + num + "</a></div>");
+            }
+            if(begin>0) $(".containerm").prepend("<div class=\"itemm item_back\"><a href='javascript:pages("+len+","+(page-1)+");' id='next'>...</a></div>");
+            if(end<len) $(".containerm").append("<div class=\"itemm item_next\"><a href='javascript:pages("+len+","+(page+1)+");' id='next'>...</a></div>");
         }
 
 
@@ -291,7 +313,6 @@
             else
                 document.getElementById(params.testName).click()
         })
-
         function twodigits(value){
             if (value<10) return "0"+value;
             else return value;

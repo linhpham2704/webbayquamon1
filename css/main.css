@@ -207,7 +207,7 @@
     padding: 20px 50px;
     border: none;
     width: 75%;
-    height: 650px;
+    height: 475px;
     font-size: 18px;
     overflow-y: auto;
 }
@@ -216,7 +216,7 @@
     padding: 20px 50px;
     border: none;
     width: 25%;
-    height: 650px;
+    height: 475px;
     font-size: 18px;
     overflow-y: auto;
 }
@@ -279,6 +279,12 @@ div.divActivitesm{
 .cardm{
     border: 0;
 }
+
+a{
+    text-decoration:none;
+    color: black;
+}
+
 .itemm {
     color: black;
     font-weight: bold;
