@@ -173,7 +173,7 @@
         }).done(function (response) {
             let testresult = response;
             sessionStorage.setItem("testresult", testresult);
-            console.log(testresult)
+            console.log(response)
             $("#Title1").empty()
             $("#Title1").append("<h1>"+testresult.testName+"</h1><h2>Trả bài</h2><br><div style='color: green'><h3>Điểm của bạn là: "+testresult.score+"/"+testresult.totalScore+"</h3></div><br>")
             jQuery.each(testresult.formAnswerList, function (i, val) {

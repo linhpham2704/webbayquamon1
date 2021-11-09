@@ -226,7 +226,9 @@
             var postdata=url.substring(url.indexOf("?")+1);
             let f = formDataEntries.next();
             while (!f.done) {
-                postdata=postdata+"&"+f.value[0]+"="+f.value[1];
+                value=f.value[1]
+                if(f.value[0].startsWith("answer")) value=value.split(".")[0];
+                postdata=postdata+"&"+f.value[0]+"="+value;
                 f = formDataEntries.next();
             }
             console.log(postdata)
