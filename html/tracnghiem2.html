@@ -133,7 +133,10 @@
             <div class="d-flex justify-content-end" style="font-size: 20px; color: white;" id="countdown">
                 00:00:00
             </div>
-            <input type="hidden" id="countdown_time"></input>
+            <div>
+                <input type="hidden" id="countdown_time"></input>
+                <input type="hidden" id="countdown_change" value="1"></input>
+            </div>
         </div>
     </nav>
 
@@ -223,6 +226,8 @@
                 let objecques = data;
                 console.log(objecques)
                 document.getElementById("countdown_time").setAttribute("value",objecques.time);
+                countdown_change=document.getElementById("countdown_change").getAttribute("value");
+                document.getElementById("countdown_change").setAttribute("value",-countdown_change);
                 $("#Title1").empty()
                 $("#Title1").append("<input type='hidden' name=\"time\" value=\""+objecques.time+"\"></input>");
                 $("#Title1").append("<input type='hidden' name='testName' value='"+objecques.testName+"'></input>" +
@@ -356,13 +361,15 @@
         })
 
         //Countdown
+        var change=0;
         var time=0;
         var distance=0;
         var dotime=0;
         var x = setInterval(function () {
-            countdown_time = document.getElementById("countdown_time").getAttribute("value") * 60000;
-            if(countdown_time!=time) {
-                time = countdown_time;
+            countdown_change = document.getElementById("#countdown_change").getAttribute("value");
+            if(change!=countdown_change) {
+                change=countdown_change;
+                time = document.getElementById("countdown_time").getAttribute("value") * 60000;
                 distance = time;
                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
