@@ -209,6 +209,15 @@
     font-size: 18px;
     overflow-y: auto;
 }
+.content-th{
+    float: right;
+    padding: 20px 50px;
+    border: none;
+    width: 25%;
+    height: 650px;
+    font-size: 18px;
+    overflow-y: auto;
+}
 
 /* Style the tab */
 .tab-tn {
@@ -229,6 +238,60 @@
 .card shadow-0 border mt-5{
 }
 
+/*
+
+ */
+div.divActivitesm{
+
+    width: 200px;
+    height:200px;
+    border-color: #4EC9E1;
+    text-align: center;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px cadetblue;
+    -moz-box-shadow: 5px 5px 5px cadetblue;
+    -webkit-box-shadow: 5px 5px 5px cadetblue;
+
+}
+#divActivites1m{
+    width: 200px;
+    height: 50px;
+    background-color: #4EC9E1;
+}
+
+
+.containerm {
+    width: 200px;
+    height: auto;
+
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+
+}
+.cardm{
+    border: 0;
+}
+.itemm {
+    color: black;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    padding: 1px;
+    height: 30px;
+    border-color:  #4EC9E1;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px cadetblue;
+    -moz-box-shadow: 1px 1px 1px cadetblue;
+    -webkit-box-shadow: 1px 1px 1px cadetblue;
+    margin-right:5px;
+    margin-bottom: 5px;
+
+
+}
 
 /* Style the buttons inside the tab */
 .tab-tn button {
