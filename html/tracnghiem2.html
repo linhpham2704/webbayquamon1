@@ -223,6 +223,7 @@
             }).done(function (data) {
                 let objecques = data;
                 console.log(objecques)
+                if(objecques.time>0) alert("Thời gian làm bài là: "+objecques.time+". Bạn đã sẵn sàng?")
                 document.getElementById("countdown_time").setAttribute("value",objecques.time);
                 countdown_change=document.getElementById("countdown_change").getAttribute("value");
                 document.getElementById("countdown_change").setAttribute("value",-countdown_change);
