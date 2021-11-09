@@ -269,6 +269,17 @@
             }
             if(begin>0) $(".containerm").prepend("<a href='javascript:pages("+len+","+(page-1)+");' id='back'><div type='button' class=\"itemm item_back\">...</div></a>");
             if(end<len) $(".containerm").append("<a href='javascript:pages("+len+","+(page+1)+");' id='next'><div type='button' class=\"itemm item_next\">...</div></a>");
+
+            //Navigation
+            var formData = new FormData(document.getElementById('testform'));
+            for (let i = 1; i < len+1; i++) {
+                if(formData.get("answer_"+i)!=null){
+                    end = document.getElementsByClassName("itemm item"+i).length
+                    for (let j = 0; j < end; j++) {
+                        document.getElementsByClassName("itemm item"+i).item(j).style.backgroundColor='#4EC9E1';
+                    }
+                }
+            }
         }
 
 
@@ -317,6 +328,29 @@
             if (value<10) return "0"+value;
             else return value;
         }
+
+        //Navigation
+        var len=0;
+        var n = setInterval(function (){
+            if(document.getElementById("len")!=null) {
+                len = document.getElementById("len").getAttribute("value");
+                clearInterval(n);
+            }
+        },1000)
+
+        $("#testform").change(function (){
+            len = document.getElementById("len").getAttribute("value");
+            // console.log("length--"+len)
+            var formData = new FormData(document.getElementById('testform'));
+            for (let i = 1; i < len+1; i++) {
+                if(formData.get("answer_"+i)!=null){
+                    end = document.getElementsByClassName("itemm item"+i).length
+                    for (let j = 0; j < end; j++) {
+                        document.getElementsByClassName("itemm item"+i).item(j).style.backgroundColor='#4EC9E1';
+                    }
+                }
+            }
+        })
 
         //Countdown
         var time=0;
