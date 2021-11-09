@@ -201,6 +201,16 @@
     overflow-y: auto;
 }
 
+content-nb{
+    float: left;
+    padding: 20px 50px;
+    border: none;
+    width: 100%;
+    height: 650px;
+    font-size: 18px;
+    overflow-y: auto;
+}
+
 /* Style the tab */
 .tab-tn {
     float: left;
