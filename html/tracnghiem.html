@@ -53,7 +53,7 @@
                         <a class="nav-link" href="#" style="font-size: 20px">Về chúng tôi</a>
                     </li>
                 </ul>
-                <form class="d-flex" method="get" action="/">
+                <form class="d-flex" method="get" action="tracnghiem.html">
                     <input class="form-control" type="search" name="text" placeholder="Search" aria-label="Search">
                 </form>
                 <button id="login" type="button" class="btn btn-outline-secondary ms-4" data-bs-toggle="modal" data-bs-target="#modal-login">Login</button>
@@ -206,6 +206,8 @@
 
         var header = document.getElementById("myHeader");
         var sticky = header.offsetTop;
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
 
         function myFunction() {
             if (window.pageYOffset > sticky) {
@@ -214,8 +216,11 @@
                 header.classList.remove("sticky");
             }
         }
+        let ajaxurl = "http://localhost:8080/api/home";
+        if(params.text!=null) ajaxurl = ajaxurl+"/search?text="+params.text;
+
         $.ajax({
-            url: "http://localhost:8080/api/home",
+            url: ajaxurl,
             type: "GET"
         }).done(function (data) {
             let subjectlist = data;
