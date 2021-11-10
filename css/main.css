@@ -212,8 +212,8 @@
     overflow-y: auto;
 }
 .content-th{
-    float: right;
-    padding: 20px 50px;
+    /*float: right;*/
+    padding: 10px 10px;
     border: none;
     width: 25%;
     height: 475px;
@@ -249,31 +249,33 @@
  */
 div.divActivitesm{
 
-    width: 200px;
+    width: 100%;
     height:200px;
     border-color: #4EC9E1;
     text-align: center;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
+    /*-webkit-border-radius: 15px;*/
+    /*-moz-border-radius: 15px;*/
     border-radius: 15px;
     box-shadow: 5px 5px 5px cadetblue;
     -moz-box-shadow: 5px 5px 5px cadetblue;
     -webkit-box-shadow: 5px 5px 5px cadetblue;
 
+    margin-right: 15px;
+
 }
 #divActivites1m{
-    width: 200px;
+    width: 100%;
     height: 50px;
     background-color: #4EC9E1;
 }
 
 
 .containerm {
-    width: 200px;
+    width: 100%;
     height: auto;
 
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 20% 20% 20% 20% 20% ;
 
 }
 .cardm{
