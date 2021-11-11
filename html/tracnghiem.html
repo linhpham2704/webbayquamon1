@@ -173,11 +173,10 @@
 <!--                </div>-->
 <!--            </div>-->
         </div>
-        <div class="d-flex justify-content-center align-items-center pt-3">
-            <button type="button" onclick="seeMore()" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px; display: none" id="more_dc">
         </div>
-        <div class="d-none d-flex justify-content-center align-items-center pt-3">
-            <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See less</button>
+        <div class="d-flex justify-content-center align-items-center pt-3">
+            <button id="btn3_dc" onclick="seeMore('dc')" type="button" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
         </div>
     </div>
 
@@ -191,11 +190,10 @@
 <!--                </div>-->
 <!--            </div>-->
         </div>
-        <div class="d-flex justify-content-center align-items-center pt-3">
-            <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
+        <div id="more_cn" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="padding: 20px; display: none">
         </div>
-        <div class="d-none d-flex justify-content-center align-items-center pt-3">
-            <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See less</button>
+        <div class="d-flex justify-content-center align-items-center pt-3">
+            <button id="btn3_cn" type="button" onclick="seeMore('cn')" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
         </div>
     </div>
 
@@ -209,17 +207,17 @@
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
 
-        function seeMore(){
+        function seeMore(type){
 
-            var moreSubject = document.getElementById("more");
-            var btnText = document.getElementById("btn3");
-
-            if(moreSubject.style.display = "none"){
+            var moreSubject = document.getElementById("more_"+type);
+            var btnText = document.getElementById("btn3_"+type);
+            if(moreSubject.style.display == "none"){
                 btnText.innerHTML = "See less";
                 moreSubject.style.display = "block";
-            }else if(moreSubject.style.display = ""){
+            }
+            else if(moreSubject.style.display =="block"){
                 btnText.innerHTML = "See more";
-                moreSubject.style.display = "initial";
+                moreSubject.style.display = "none";
             }
         }
 
@@ -239,24 +237,47 @@
         }).done(function (data) {
             let subjectlist = data;
             console.log(subjectlist)
+            var i_dc=0;
+            var i_cn=0;
+            var show=4;
             jQuery.each(subjectlist,function (i,value){
                 if("đại cương" === value.type){
-                    $("#mondc").append("<div class=\"col\">\n" +
-                        "                <a href=\"tracnghiem2.html?sbjid="+value.subjectId+"\"><img class=\"card-img-top\" src=\""+value.poster+"\" alt=\"Card image cap\"></a>\n" +
-                        "                <div class=\"card-body\">\n" +
-                        "                    <h5 class=\"card-title text-center\">"+value.name+"</h5>\n" +
-                        "                </div>\n" +
-                        "            </div>")
+                    i_dc++;
+                    if(i_dc <= show)
+                        $("#mondc").append("<div class=\"col\">\n" +
+                            "                <a href=\"document.html?sbjid="+value.subjectId+"\"><img class=\"card-img-top\" src=\""+value.poster+"\" alt=\"Card image cap\"></a>\n" +
+                            "                <div class=\"card-body\">\n" +
+                            "                    <h5 class=\"card-title text-center\">"+value.name+"</h5>\n" +
+                            "                </div>\n" +
+                            "            </div>")
+                    else
+                        $("#more_dc").append("<div class=\"col\">\n" +
+                            "                <a href=\"document.html?sbjid="+value.subjectId+"\"><img class=\"card-img-top\" src=\""+value.poster+"\" alt=\"Card image cap\"></a>\n" +
+                            "                <div class=\"card-body\">\n" +
+                            "                    <h5 class=\"card-title text-center\">"+value.name+"</h5>\n" +
+                            "                </div>\n" +
+                            "            </div>")
                 }
                 if("chuyên ngành" === value.type) {
-                    $("#moncn").append("<div class=\"col\">\n" +
-                        "                <a href=\"tracnghiem2.html?sbjid="+value.subjectId+"\"><img class=\"card-img-top\" src=\""+value.poster+"\" alt=\"Card image cap\"></a>\n" +
-                        "                <div class=\"card-body\">\n" +
-                        "                    <h5 class=\"card-title text-center\">"+value.name+"</h5>\n" +
-                        "                </div>\n" +
-                        "            </div>")
+                    i_cn++;
+                    if(i_cn <= show)
+                        $("#moncn").append("<div class=\"col\">\n" +
+                            "                <a href=\"document.html?sbjid="+value.subjectId+"\"><img class=\"card-img-top\" src=\""+value.poster+"\" alt=\"Card image cap\"></a>\n" +
+                            "                <div class=\"card-body\">\n" +
+                            "                    <h5 class=\"card-title text-center\">"+value.name+"</h5>\n" +
+                            "                </div>\n" +
+                            "            </div>")
+                    else
+                        $("#more_cn").append("<div class=\"col\">\n" +
+                            "                <a href=\"document.html?sbjid="+value.subjectId+"\"><img class=\"card-img-top\" src=\""+value.poster+"\" alt=\"Card image cap\"></a>\n" +
+                            "                <div class=\"card-body\">\n" +
+                            "                    <h5 class=\"card-title text-center\">"+value.name+"</h5>\n" +
+                            "                </div>\n" +
+                            "            </div>")
                 }
             })
+            if (i_dc<show) document.getElementById("btn3_dc").style.display="none";
+            if (i_cn<show) document.getElementById("btn3_cn").style.display="none";
         })
     </script>
 </main>
