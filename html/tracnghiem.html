@@ -174,7 +174,7 @@
 <!--            </div>-->
         </div>
         <div class="d-flex justify-content-center align-items-center pt-3">
-            <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
+            <button type="button" onclick="seeMore()" class="btn btn-outline-primary" style="border-radius: 27px">See more</button>
         </div>
         <div class="d-none d-flex justify-content-center align-items-center pt-3">
             <button type="button" class="btn btn-outline-primary" style="border-radius: 27px">See less</button>
@@ -208,6 +208,20 @@
         var sticky = header.offsetTop;
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
+
+        function seeMore(){
+
+            var moreSubject = document.getElementById("more");
+            var btnText = document.getElementById("btn3");
+
+            if(moreSubject.style.display = "none"){
+                btnText.innerHTML = "See less";
+                moreSubject.style.display = "block";
+            }else if(moreSubject.style.display = ""){
+                btnText.innerHTML = "See more";
+                moreSubject.style.display = "initial";
+            }
+        }
 
         function myFunction() {
             if (window.pageYOffset > sticky) {
