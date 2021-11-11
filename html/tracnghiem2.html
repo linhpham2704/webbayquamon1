@@ -235,9 +235,9 @@
                     let num = i + 1;
                     let answers = val.answers;
                     let title = val.title;
-                    if (/^\d*./.test(val.title))
+                    if (/^\d./.test(val.title))
                         title = val.title.substring(val.title.indexOf(".") + 1).trim();
-                    if (/^Câu \d*:/.test(val.title))
+                    if (/^Câu\s\d*:/.test(val.title))
                         title = val.title.substring(val.title.indexOf(":") + 1).trim();
                     $("#Title1").append("<div id='question_" + num + "'>"
                         + num + ". " + title)
