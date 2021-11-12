@@ -293,7 +293,7 @@
         function check(){
             var formData = new FormData(document.getElementById('testform'))
             var formDataEntries = formData.entries()
-            var postdata="?sbjid="+params.sbjid;
+            var postdata="sbjid="+params.sbjid;
             let f = formDataEntries.next();
             while (!f.done) {
                 value=f.value[1]
