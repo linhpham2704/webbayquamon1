@@ -305,7 +305,7 @@
             console.log(postdata)
 
             alert("Đã nộp bài")
-            window.location.replace("trabai.html?"+postdata);
+            window.location.href = "trabai.html?"+postdata;
         }
         $.ajax({
             url: "http://localhost:8080/api/subject?id=" + params.sbjid,
