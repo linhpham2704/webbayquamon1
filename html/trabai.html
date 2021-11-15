@@ -155,7 +155,19 @@
                     <div class="col-md-12">
                         <h3 class="text-center mb-5"> Comments </h3>
                         <div class="row">
-                            <div class="col-md-12" id="comment">
+                            <div class="col-md-12">
+                                <h5 class="mb-4" id="comment_num"></h5>
+                                <div class="form-outline mb-4">
+                                    <form class="d-flex user d-none" id='comment_form'>
+                                        <input id="objectiveTest_id" type="hidden" value="" name="objectiveTest_id"/>
+                                        <div class="flex-grow-1"><input type="text" class="form-control" name="text" placeholder="Comment"/></div>
+                                        <div class="ps-2">
+                                            <button class="btn btn-outline-success" type="button" onclick='comment_submit()'>Send</button>
+                                        </div>
+                                    </form>
+                                    <div class="text-center guest">You must be <a href="#" data-bs-toggle="modal" data-bs-target="#modal-login">logged in</a> to post a comment.</div>
+                                </div>
+                                <div id="comment"></div>
 <!--                                <div class="media mt-4"> <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview" src="https://i.imgur.com/xELPaag.jpg" />-->
 <!--                                    <div class="media-body">-->
 <!--                                        <div class="row">-->
@@ -228,18 +240,10 @@
                 let comments = data;
                 console.log("list.length = " + comments.length)
                 console.log(comments)
+                $("#comment_num").empty()
+                $("#comment_num").append("Comments (<span text=\""+comments.length+"\">"+comments.length+"</span>)")
+                $("#objectiveTest_id").attr("value",params.objectiveTestId);
                 $("#comment").empty();
-                $("#comment").append("<h5 class=\"mb-4\"> Comments (<span text=\"" + comments.length + "\">" + comments.length + "</span>)</h5>\n" +
-                    "            <div class=\"form-outline mb-4\">\n" +
-                    "                <form class=\"d-flex user d-none\" id='comment_form'>\n" +
-                    "                    <input type=\"hidden\" value=\"" + params.objectiveTestId + "\" name=\"objectiveTest_id\"/>\n" +
-                    "                    <div class=\"flex-grow-1\"><input type=\"text\" class=\"form-control\" name=\"text\" placeholder=\"Comment\"/></div>\n" +
-                    "                    <div class=\"ps-2\">\n" +
-                    "                        <button class=\"btn btn-outline-success\" type=\"button\" onclick='comment_submit()'>Send</button>\n" +
-                    "                    </div>\n" +
-                    "                </form>\n" +
-                    "                <div class=\"text-center guest\">You must be <a href=\"#\" data-bs-toggle=\"modal\" data-bs-target=\"#modal-login\">logged in</a> to post a comment.</div>\n" +
-                    "            </div>\n")
                 jQuery.each(comments, function (i, val) {
                     if(val.name!=null)
                         $("#comment").append("<div class=\"media\"> <a class=\"pr-3\" href=\"#\"><img class=\"rounded-circle\" alt=\"Bootstrap Media Another Preview\" src=\"https://i.imgur.com/nAcoHRf.jpg\" /></a>\n" +
@@ -282,6 +286,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     form.reset(); //reset form after AJAX success or do something else
+                    comment_func()
                 }
             }
             //Fail the onsubmit to avoid page refresh.
