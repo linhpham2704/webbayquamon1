@@ -158,11 +158,11 @@
                             <div class="col-md-12">
                                 <h5 class="mb-4" id="comment_num"></h5>
                                 <div class="form-outline mb-4">
-                                    <form class="d-flex user d-none" id='comment_form' onsubmit="comment_submit()">
+                                    <form class="d-flex user d-none" id='comment_form' onsubmit="comment_submit(event)">
                                         <input id="objectiveTest_id" type="hidden" value="" name="objectiveTest_id"/>
                                         <div class="flex-grow-1"><input type="text" class="form-control" name="text" placeholder="Comment"/></div>
                                         <div class="ps-2">
-                                            <button class="btn btn-outline-success" type="button" onclick='comment_submit()'>Send</button>
+                                            <button class="btn btn-outline-success" type="button" onclick='comment_submit(event)'>Send</button>
                                         </div>
                                     </form>
                                     <div class="text-center guest">You must be <a href="#" data-bs-toggle="modal" data-bs-target="#modal-login">logged in</a> to post a comment.</div>
@@ -272,7 +272,8 @@
             })
         }
 
-        function comment_submit(){
+        function comment_submit(event){
+            event.preventDefault();
             var form = document.getElementById('comment_form');
             var xhr = new XMLHttpRequest();
             var formData = new FormData(form);
