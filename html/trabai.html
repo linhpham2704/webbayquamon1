@@ -255,6 +255,26 @@
             }
         }
 
+        function comment_submit(){
+            var form = document.getElementById('comment_form');
+            var xhr = new XMLHttpRequest();
+            var formData = new FormData(form);
+            //open the request
+            xhr.open('POST','http://localhost:8080/api/comment/add');
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            //send the form data
+            xhr.send(JSON.stringify(Object.fromEntries(formData)));
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    form.reset(); //reset form after AJAX success or do something else
+                }
+            }
+            //Fail the onsubmit to avoid page refresh.
+            return false;
+        }
+
         $.ajax({
             "url": "http://localhost:8080/api/objectivetest/check",
             "method": "POST",
@@ -330,11 +350,11 @@
                 console.log(comments)
                 $("#comment").append("<h5 class=\"mb-4\"> Comments (<span text=\""+comments.length+"\">"+comments.length+"</span>)</h5>\n" +
                     "            <div class=\"form-outline mb-4\">\n" +
-                    "                <form class=\"d-flex user d-none\" method=\"post\" action='http://localhost:8080/api/comment/add'>\n" +
+                    "                <form class=\"d-flex user d-none\" id='comment_form'>\n" +
                     "                    <input type=\"hidden\" value=\""+params.objectiveTestId+"\" name=\"objectiveTest_id\"/>\n" +
-                    "                    <div class=\"flex-grow-1\"><input type=\"text\" class=\"form-control\" name=\"comment\" placeholder=\"Comment\"/></div>\n" +
+                    "                    <div class=\"flex-grow-1\"><input type=\"text\" class=\"form-control\" name=\"text\" placeholder=\"Comment\"/></div>\n" +
                     "                    <div class=\"ps-2\">\n" +
-                    "                        <button class=\"btn btn-outline-success\" type=\"submit\">Send</button>\n" +
+                    "                        <button class=\"btn btn-outline-success\" type=\"button\" onclick='comment_submit()'>Send</button>\n" +
                     "                    </div>\n" +
                     "                </form>\n" +
                     "                <div class=\"text-center guest\">You must be <a href=\"#\" data-bs-toggle=\"modal\" data-bs-target=\"#modal-login\">logged in</a> to post a comment.</div>\n" +
