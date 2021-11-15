@@ -71,7 +71,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#" onclick="handleSignedOutUser()">Sign out</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="firebase.auth().signOut();">Sign out</a></li>
                     </ul>
                 </div>
                 <div class="modal fade d-block1" id="modal-login" tabindex="-1" aria-hidden="true">
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer d-none user">
-                                <button id="sign-out" type="button" class="btn btn-danger" onclick="handleSignedOutUser()">Sign out</button>
+                                <button id="sign-out" type="button" class="btn btn-danger" onclick="firebase.auth().signOut();">Sign out</button>
                             </div>
                         </div>
                     </div>

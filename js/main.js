@@ -9,10 +9,6 @@ var firebaseConfig = {
     measurementId: "G-W03VC0V2DZ"
 };
 
-
-firebase.initializeApp(firebaseConfig);
-
-
 var uiConfig = {
     signInFlow: 'popup',
     signInOptions: [
@@ -34,30 +30,16 @@ var uiConfig = {
 
     autoUpgradeAnonymousUsers: true
 };
-var uiConfigfb={
-    signInFlow: 'popup',
-    signInOptions: [
-
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-        signInSuccessWithAuthResult: function (authResult) {
-            if (authResult.user) {
-                handleSignedInUser(authResult.user);
-            }
-            return false;
-        },
-        signInFailure: function (error) {
-
-        }
-    },
-
-    autoUpgradeAnonymousUsers: true
-};
-
-
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+var ui
+$(function () {
+    firebase.initializeApp(firebaseConfig);
+    ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#firebaseui-auth-container', uiConfig);
+    firebase.auth().onAuthStateChanged(function (user) {
+        user ? handleSignedInUser(user) : handleSignedOutUser();
+        $("#login-spinner").addClass("d-none")
+    });
+});
 
 function handleSignedInUser(user) {
     $(".user").removeClass("d-none")
