@@ -241,11 +241,22 @@
                     "                <div class=\"text-center guest\">You must be <a href=\"#\" data-bs-toggle=\"modal\" data-bs-target=\"#modal-login\">logged in</a> to post a comment.</div>\n" +
                     "            </div>\n")
                 jQuery.each(comments, function (i, val) {
-                    $("#comment").append("<div class=\"media\"> <a class=\"pr-3\" href=\"#\"><img class=\"rounded-circle\" alt=\"Bootstrap Media Another Preview\" src=\"https://i.imgur.com/xELPaag.jpg\" /></a>\n" +
+                    if(val.name!=null)
+                        $("#comment").append("<div class=\"media\"> <a class=\"pr-3\" href=\"#\"><img class=\"rounded-circle\" alt=\"Bootstrap Media Another Preview\" src=\"https://i.imgur.com/nAcoHRf.jpg\" /></a>\n" +
                         "                                    <div class=\"media-body\">\n" +
                         "                                        <div class=\"row\">\n" +
                         "                                            <div class=\"col-8 d-flex\">\n" +
                         "                                                <h5>"+val.name+"</h5> <span>- "+val.timeAgo+"</span>\n" +
+                        "                                            </div>\n" +
+                        "                                            <div class=\"col-4\">\n" +
+                        "                                                <div class=\"pull-right reply\"> <a href=\"#\"><span><i class=\"fa fa-reply\"></i> reply</span></a> </div>\n" +
+                        "                                            </div>\n" +
+                        "                                        </div> "+val.text+" <div class=\"media mt-4\">");
+                    else $("#comment").append("<div class=\"media\"> <a class=\"pr-3\" href=\"#\"><img class=\"rounded-circle\" alt=\"Bootstrap Media Another Preview\" src=\"https://i.imgur.com/nAcoHRf.jpg\" /></a>\n" +
+                        "                                    <div class=\"media-body\">\n" +
+                        "                                        <div class=\"row\">\n" +
+                        "                                            <div class=\"col-8 d-flex\">\n" +
+                        "                                                <span>- "+val.timeAgo+"</span>\n" +
                         "                                            </div>\n" +
                         "                                            <div class=\"col-4\">\n" +
                         "                                                <div class=\"pull-right reply\"> <a href=\"#\"><span><i class=\"fa fa-reply\"></i> reply</span></a> </div>\n" +
