@@ -252,9 +252,12 @@
                 $("#comment_num").append("Comments (<span text=\""+comments.length+"\">"+comments.length+"</span>)")
                 $("#objectiveTest_id").attr("value",params.objectiveTestId);
                 $("#comment").empty();
+                var photoURL="";
                 jQuery.each(comments, function (i, val) {
+                    if(val.photoURL!=null) photoURL=val.photoURL;
+                    else photoURL="https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
                     if(val.name!=null)
-                        $("#comment").append("<div class=\"media\"> <a class=\"pr-3\" href=\"#\"><img class=\"rounded-circle\" alt=\"Bootstrap Media Another Preview\" src=\"https://i.imgur.com/nAcoHRf.jpg\" /></a>\n" +
+                        $("#comment").append("<div class=\"media\"> <a class=\"pr-3\" href=\"#\"><img class=\"rounded-circle\" alt=\"Bootstrap Media Another Preview\" src='"+photoURL+"' /></a>\n" +
                         "                                    <div class=\"media-body\">\n" +
                         "                                        <div class=\"row\">\n" +
                         "                                            <div class=\"col-8 d-flex\">\n" +
@@ -264,7 +267,7 @@
                         "                                                <div class=\"pull-right reply\"> <a href=\"#\"><span><i class=\"fa fa-reply\"></i> reply</span></a> </div>\n" +
                         "                                            </div>\n" +
                         "                                        </div> "+val.text+" <div class=\"media mt-4\">");
-                    else $("#comment").append("<div class=\"media\"> <a class=\"pr-3\" href=\"#\"><img class=\"rounded-circle\" alt=\"Bootstrap Media Another Preview\" src=\"https://i.imgur.com/nAcoHRf.jpg\" /></a>\n" +
+                    else $("#comment").append("<div class=\"media\"> <a class=\"pr-3\" href=\"#\"><img class=\"rounded-circle\" alt=\"Bootstrap Media Another Preview\" src='"+photoURL+"' /></a>\n" +
                         "                                    <div class=\"media-body\">\n" +
                         "                                        <div class=\"row\">\n" +
                         "                                            <div class=\"col-8 d-flex\">\n" +
