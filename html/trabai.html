@@ -148,6 +148,8 @@
                                 <div class="form-outline mb-4">
                                     <form class="d-flex user d-none" id='comment_form' onsubmit="comment_submit(event)">
                                         <input id="objectiveTest_id" type="hidden" value="" name="objectiveTest_id"/>
+                                        <input id="username" type="hidden" value="" name="name"/>
+                                        <input id="useremail" type="hidden" value="" name="email"/>
                                         <div class="flex-grow-1"><input type="text" class="form-control" name="text" placeholder="Comment"/></div>
                                         <div class="ps-2">
                                             <button class="btn btn-outline-success" type="submit">Send</button>
@@ -201,7 +203,22 @@
             </div>
         </div>
     </div>
+
     <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+        const app = initializeApp(firebaseConfig);
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+        const auth = getAuth();
+        auth.onAuthStateChanged(function(user) {
+            if (user) {
+                $("#username").attr("value",user.displayName);
+                $("#useremail").attr("value",user.email);
+            } else {
+                console.log("No log in")
+            }
+        });
+    </script>
+    <script>
         window.onscroll = function() {myFunction()};
 
         var header = document.getElementById("myHeader");
@@ -211,15 +228,6 @@
         console.log(params)
         let testresult = sessionStorage.getItem("testresult")
         console.log(testresult)
-
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth();
-        const user = await auth.currentUser;
-        console.log(auth)
-        console.log(user)
 
         function myFunction() {
             if (window.pageYOffset > sticky) {
@@ -271,6 +279,7 @@
 
         function comment_submit(event){
             event.preventDefault();
+
             var form = document.getElementById('comment_form');
             var xhr = new XMLHttpRequest();
             var formData = new FormData(form);
