@@ -14,7 +14,7 @@ var uiConfig = {
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
         signInSuccessWithAuthResult: function (authResult) {
@@ -44,6 +44,7 @@ $(function () {
 function handleSignedInUser(user) {
     $(".user").removeClass("d-none")
     $(".guest").addClass("d-none")
+    $('#login').addClass("d-none")
 
     $("#name").text(user.displayName);
     $("#email").text(user.email);
@@ -60,5 +61,6 @@ function handleSignedOutUser() {
     ui.start("#firebaseui-auth-container", uiConfig);
     $(".user").addClass("d-none")
     $(".guest").removeClass("d-none")
+    $('#login').removeClass("d-none")
 }
 

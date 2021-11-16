@@ -8,7 +8,7 @@
     <link href="../css/main.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <title>Trắc nghiệm</title>
 </head>
 <body>
@@ -56,12 +56,13 @@
                 <form class="d-flex" method="get" action="tracnghiem.html">
                     <input class="form-control" type="search" name="text" placeholder="Search" aria-label="Search">
                 </form>
-                <button id="login" type="button" class="btn btn-outline-secondary ms-4" data-bs-toggle="modal" data-bs-target="#modal-login">Login</button>
-                <div class="dropdown">
-                    <img id="avatar"  src="../images/user.svg" data-bs-toggle="dropdown" width="38x" height="38x"
-                         class="user avatar rounded-circle ms-3 d-none dropdown-toggle">
-                    <ul class="dropdown-menu dropdown-menu-center text-small" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                <button  id="login" type="button" class="btn btn-outline-secondary ms-4 d-none" data-bs-toggle="modal" data-bs-target="#modal-login">Login</button>
+                <div id="login-spinner" class="spinner-border text-light ms-3" role="status"></div>
+                <div class="dropdown" style="right: 0">
+                    <a href="#user-signed-in"><img id="avatar"  src="../images/user.svg" data-bs-toggle="dropdown" width="38x" height="38x"
+                                                   class="user avatar rounded-circle ms-3 d-none dropdown-toggle"></a>
+                    <ul class="dropdown-menu dropdown-menu-center text-small" aria-labelledby="dropdownUser1" style="right: 0">
+
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal-login">Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -70,7 +71,7 @@
                     </ul>
                 </div>
                 <div class="modal fade d-block1" id="modal-login" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                    <div class="modal-dialog modal-lg" >
                         <div class="modal-content shadow">
                             <div class="modal-header">
                                 <h3 class="modal-title">Login</h3>
@@ -80,30 +81,18 @@
                                 <div id="" class="guest">
                                     <div class="container-1">
                                         <form action="/">
-                                            <div class="row">
-                                                <div>
-                                                    <a href="#" class="fb btn4">
-                                                        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-                                                    </a>
-                                                    <a href="#" class="twitter btn4">
-                                                        <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-                                                    </a>
-                                                    <a href="#" class="google btn4"><i class="fa fa-google fa-fw">
-                                                    </i> Login with Google+
-                                                    </a>
-                                                </div>
+                                            <div id="firebaseui-auth-container"></div>
 
-                                                <div class="d-flex justify-content-center pt-3" style="font-size: 30px; color: gray">
-                                                    OR
-                                                </div>
-
-                                                <div class="pt-3">
-                                                    <input class="input" type="text" name="username" placeholder="Username" required>
-                                                    <input class="input" type="password" name="password" placeholder="Password" required>
-                                                    <input class="input" type="submit" value="Login">
-                                                </div>
-
+                                            <div class="d-flex justify-content-center pt-3" style="font-size: 30px; color: gray">
+                                                OR
                                             </div>
+
+                                            <div class="pt-3">
+                                                <input class="input" type="text" name="username" placeholder="Username" required>
+                                                <input class="input" type="password" name="password" placeholder="Password" required>
+                                                <input class="input" type="submit" value="Login">
+                                            </div>
+
                                         </form>
                                     </div>
                                 </div>
