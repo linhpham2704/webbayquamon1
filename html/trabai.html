@@ -150,6 +150,7 @@
                                         <input id="objectiveTest_id" type="hidden" value="" name="objectiveTest_id"/>
                                         <input id="username" type="hidden" value="" name="name"/>
                                         <input id="useremail" type="hidden" value="" name="email"/>
+                                        <input id="userphoto_url" type="hidden" value="" name="photo"/>
                                         <div class="flex-grow-1"><input type="text" class="form-control" name="text" placeholder="Comment"/></div>
                                         <div class="ps-2">
                                             <button class="btn btn-outline-success" type="submit">Send</button>
@@ -209,10 +210,12 @@
         const app = initializeApp(firebaseConfig);
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
         const auth = getAuth();
+        console.log(auth)
         auth.onAuthStateChanged(function(user) {
             if (user) {
                 $("#username").attr("value",user.displayName);
                 $("#useremail").attr("value",user.email);
+                $("#userphoto_url").attr("value",user.photoURL);
             } else {
                 console.log("No log in")
             }
