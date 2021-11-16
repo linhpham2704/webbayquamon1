@@ -118,17 +118,48 @@
         <!-- Navbar -->
 
         <div class="container" style="padding-top: 30px;">
-            <form action="mailto:@gmail.com" method="post" enctype=”multipart/form-data/file” name=”EmailForm”>
-                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Text..." rows="5" style="width: 90%;"></textarea>
-                <br>
-                <div class="input-group" style="width: 90%;">
-                    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                    <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Submit</button>
-                </div>
-            </form>
+<!--            <form action="mailto:tuanan8601@gmail.com" method="post" enctype=”multipart/form-data/file” name=”EmailForm”>-->
+<!--                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Text..." rows="5" style="width: 90%;"></textarea>-->
+<!--                <br>-->
+<!--                <div class="input-group" style="width: 90%;">-->
+<!--                    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">-->
+<!--                    <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Submit</button>-->
+<!--                </div>-->
+<!--            </form>-->
+            <div style="font-family: Roboto; border-radius: 5px; padding: 1px 30px; width: 75%;">
+                <form accept-charset="UTF-8" action="https://getform.io/f/50006958-21ca-456c-9026-d5f6243b4a4f" method="POST" enctype="multipart/form-data"  target="_blank" id="wpform">
+                    <input type="hidden" id="username" name="first_name" value="" required="required">
+                    <input type="hidden" id="useremail" name="email" value="" required="required">
+                    <div>
+                        <textarea class="form-control" name="message" id="exampleFormControlTextarea1" placeholder="Text..." rows="5" style="width: 90%;"></textarea>
+                        <br>
+                    </div>
+                    <div class="input-group" style="width: 90%;">
+                        <input type="file" name="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        <input type="hidden" name="utf8" value="✓">
+                        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </header>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+    const app = initializeApp(firebaseConfig);
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+    const auth = getAuth();
+    console.log(auth)
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            $("#username").attr("value",user.displayName);
+            $("#useremail").attr("value",user.email);
+        } else {
+            console.log("No log in")
+        }
+    });
+</script>
 
 <footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
