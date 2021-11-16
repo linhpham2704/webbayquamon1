@@ -201,7 +201,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <script type="module">
         window.onscroll = function() {myFunction()};
 
         var header = document.getElementById("myHeader");
@@ -211,6 +211,15 @@
         console.log(params)
         let testresult = sessionStorage.getItem("testresult")
         console.log(testresult)
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const user = await auth.currentUser;
+        console.log(auth)
+        console.log(user)
 
         function myFunction() {
             if (window.pageYOffset > sticky) {
@@ -292,7 +301,7 @@
             console.log(response)
             $("#Title1").empty()
             $("#Title1").append("<h1>"+testresult.testName+"</h1><h2>Trả bài</h2><br><div style='color: green'><h3>Điểm của bạn là: "+testresult.score+"/"+testresult.totalScore+"</h3></div>")
-            distance=testresult.dotime;
+            var distance=testresult.dotime;
             var minutes = Math.floor((distance / (1000 * 60)));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
             var dotime = ""
