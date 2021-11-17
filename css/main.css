@@ -7,6 +7,13 @@
     background-size: cover;
 }
 
+.bg-image-1{
+    background-image:  url(../images/landing-page-02.png);
+    width: 100%;
+    height: 1000px;
+    background-size: cover;
+}
+
 .bg-image-2{
     background-image:  url(../images/landing-page-3.png);
     width: 100%;
@@ -14,8 +21,15 @@
     background-size: cover;
 }
 
+.bg-image-3{
+    background-image:  url(../images/landing-page-aboutus.png);
+    width: 100%;
+    height: 900px;
+    background-size: cover;
+}
+
 .bg-white{
-    background: transparent;
+
 }
 
 /*.mask{*/
@@ -49,12 +63,7 @@
 
 
 
-.bg-image-1{
-    background-image:  url(../images/landing-page-02.png);
-    width: 100%;
-    height: 1000px;
-    background-size: cover;
-}
+
 
 #btn2{
     border-radius: 27px;
@@ -194,12 +203,26 @@
     overflow-y: auto;
 }
 
-.guest{
-    background-image: url("../images/login-background.png");
-    height: 500px;
-    width: 100%;
+/* style the container */
+.container-1 {
+    float: left;
+    position: relative;
+    width: 40%;
+    height: 450px;
+    padding: 42px 0 30px 30px;
+
+}
+
+.login-icon{
+    background-image: url("../images/login-icon.png");
+    height: 400px;
+    width: 60%;
     background-size: cover;
     object-fit: contain;
+    float: right;
+}
+.modal-header{
+    height: 60px;
 }
 
 .content-nb{
@@ -347,14 +370,6 @@ a{
     box-sizing: border-box;
 }
 
-/* style the container */
-.container-1 {
-    float: left;
-    position: relative;
-    width: 330px;
-    padding: 42px 0 30px 30px;
-
-}
 
 /* style inputs and link buttons */
 .input,
@@ -403,3 +418,89 @@ a{
     background-color: #26A9E0;
 }
 
+.info-1{
+    height: 500px;
+    padding-top: 100px;
+}
+
+.main-about-us{
+    background-image: url("../images/star-back.png");
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.info-2{
+    height: 600px;
+    background-color: white;
+}
+
+.image-about-us{
+    background-image: url("../images/image3.jpeg");
+    height: 600px;
+    width: 55%;
+    background-size: cover;
+    position: relative;
+    object-fit: contain;
+    float: left;
+}
+
+.text-chien-luoc{
+    float: right;
+    color: #233C58;
+    width: 45%;
+    padding-top: 130px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.info-3{
+    height: 800px;
+    background-color: #F3CF67;
+}
+
+.grid-container {
+    height: 760px;
+    width: 900px;
+    display: grid;
+    grid-gap: 23px 23px;
+    grid-template-columns: auto auto auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 240px;
+    padding-right: 240px;
+}
+
+.grid-item {
+    height: 340px;
+    width: 340px;
+    background-color: white;
+    border: none;
+}
+
+.grid-title{
+    background-color: #F1BA34;
+    padding: 20px;
+}
+
+.overlay {
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    width: 340px;
+    height: 340px;
+    transition: .3s ease;
+    opacity:0;
+    color: white;
+    font-size: 30px;
+    padding-top: 145px;
+    text-align: center;
+}
+
+.item-1{
+
+}
+
+.item-1:hover .overlay {
+    opacity: 1;
+}
