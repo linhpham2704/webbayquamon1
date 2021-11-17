@@ -229,6 +229,8 @@
                         title = val.title.substring(val.title.indexOf(".") + 1).trim();
                     if (/^Câu\s\d*:/.test(val.title))
                         title = val.title.substring(val.title.indexOf(":") + 1).trim();
+                    else if (/^Câu\s\d*./.test(val.title))
+                        title = val.title.substring(val.title.indexOf(".") + 1).trim();
                     $("#Title1").append("<div id='question_" + num + "'>"
                         + num + ". " + title)
                     $("#Title1").append("<input type='hidden' name='" + "qid_" + num + "' value='"+val.id+"'></input>")
