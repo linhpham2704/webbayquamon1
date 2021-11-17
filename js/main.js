@@ -45,6 +45,8 @@ function handleSignedInUser(user) {
     $(".user").removeClass("d-none")
     $(".guest").addClass("d-none")
     $('#login').addClass("d-none")
+    $(".modal-title").addClass("d-none")
+    $(".modal-title-signed").removeClass("d-none")
 
     $("#name").text(user.displayName);
     $("#email").text(user.email);
@@ -62,5 +64,7 @@ function handleSignedOutUser() {
     $(".user").addClass("d-none")
     $(".guest").removeClass("d-none")
     $('#login').removeClass("d-none")
+    $(".modal-title").removeClass("d-none")
+    $(".modal-title-signed").addClass("d-none")
 }
 
