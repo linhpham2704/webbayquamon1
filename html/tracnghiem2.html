@@ -210,7 +210,7 @@
             }
             document.getElementById("Title1").style.display = "block";
             $.ajax({
-                url: "http://localhost:8080/api/objectivetest?id=" + til,
+                url: "http://localhost:8080/api/objectivetest/" + til,
                 type: "GET"
             }).done(function (data) {
                 let objecques = data;
@@ -303,7 +303,7 @@
             window.location.href = "trabai.html?"+postdata;
         }
         $.ajax({
-            url: "http://localhost:8080/api/subject?id=" + params.sbjid,
+            url: "http://localhost:8080/api/subject/" + params.sbjid,
             type: "GET"
         }).done(function (data) {
             let subject= data;

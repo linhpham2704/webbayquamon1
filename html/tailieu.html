@@ -222,8 +222,8 @@
             }
         }
         let id=1;
-        let ajaxurl = "http://localhost:8080/api/home";
-        if(params.text!=null) ajaxurl = ajaxurl+"/search?text="+params.text;
+        let ajaxurl = "http://localhost:8080/api/subject/all";
+        if(params.text!=null) ajaxurl = "http://localhost:8080/api/subject/search?text="+params.text;
 
         $.ajax({
             url: ajaxurl,
