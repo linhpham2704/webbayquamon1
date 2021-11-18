@@ -204,9 +204,9 @@
             var btnText = document.getElementById("btn3_"+type);
             if(moreSubject.style.display == "none"){
                 btnText.innerHTML = "See less";
-                moreSubject.style.display = "block";
+                moreSubject.style.display = "flex";
             }
-            else if(moreSubject.style.display =="block"){
+            else if(moreSubject.style.display =="flex"){
                 btnText.innerHTML = "See more";
                 moreSubject.style.display = "none";
             }
@@ -219,8 +219,8 @@
                 header.classList.remove("sticky");
             }
         }
-        let ajaxurl = "http://localhost:8080/api/home";
-        if(params.text!=null) ajaxurl = ajaxurl+"/search?text="+params.text;
+        let ajaxurl = "http://localhost:8080/api/subject/all";
+        if(params.text!=null) ajaxurl = "http://localhost:8080/api/subject/search?text="+params.text;
 
         $.ajax({
             url: ajaxurl,
