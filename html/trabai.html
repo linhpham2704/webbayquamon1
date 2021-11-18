@@ -317,7 +317,7 @@
             sessionStorage.setItem("testresult", testresult);
             console.log(response)
             $("#Title1").empty()
-            $("#Title1").append("<h1>"+testresult.testName+"</h1><h2>Trả bài</h2><br><div style='color: green'><h3>Điểm của bạn là: "+testresult.score+"/"+testresult.totalScore+"</h3></div>")
+            $("#Title1").append("<h1 style='text-align: center'>"+testresult.testName+"</h1><h2 style='text-align: center'>Trả bài</h2><br>")
             var distance=testresult.dotime;
             var minutes = Math.floor((distance / (1000 * 60)));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -325,7 +325,9 @@
             if(minutes>0) dotime = minutes + " phút";
             if(seconds>0) dotime = dotime + " " + seconds +" giây";
             if(testresult.time>0)
-                $("#Title1").append("<div style='color: green'><h3>Thời gian làm bài: "+dotime+"/"+testresult.time+" phút</h3></div>")
+                $("#Title1").append("<div style='background-color: wheat; padding: 30px'><div style='color: black'><h3>Điểm của bạn là: "+testresult.score+"/"+testresult.totalScore+"</h3></div><div style='color: black'><h3>Thời gian làm bài: "+dotime+"/"+testresult.time+" phút</h3></div></div>")
+            else
+                $('#Title1').append("<div style='background-color: wheat; padding: 30px'><div style='color: black'><h3>Điểm của bạn là: "+testresult.score+"/"+testresult.totalScore+"</h3></div>");
             $("#Title1").append("<br>");
 
             jQuery.each(testresult.formAnswerList, function (i, val) {
