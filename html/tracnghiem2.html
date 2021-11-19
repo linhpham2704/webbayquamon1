@@ -221,8 +221,7 @@
                 document.getElementById("countdown_change").setAttribute("value",-countdown_change);
                 $("#Title1").empty()
                 $("#Title1").append("<input type='hidden' name=\"time\" value=\""+objecques.time+"\"></input>");
-                $("#Title1").append("<input type='hidden' name='testName' value='"+objecques.testName+"'></input>" +
-                    "<input type='hidden' name='objectiveTestId' value='"+objecques.objectiveTestId+"'></input>")
+                $("#Title1").append("<input type='hidden' name='objectiveTestId' value='"+objecques.objectiveTestId+"'></input>")
                 jQuery.each(objecques.questions, function (i, val) {
                     let num = i + 1;
                     let answers = val.answers;
